@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Call this script as you would the bwa executable. It acts as a thin layer
-# around the docker container and has pretty 
+# around the docker containers in kogia. Need bash 4+
 
 set -eo pipefail
 
@@ -13,19 +13,34 @@ function rl() {
 
 function gen_docker() {
   pw=$(rl $(pwd))
-  mounts="-v ${pw}:${pw}"
+  # Associative array serves as a unique container similar to a set
+  # so we don't mount twice
+  declare -A MOUNTS
+  MOUNTS[$pw]=$pw
   for arg in ${@}
   do
+    # Ignore options that start with a dash
+    if [[ $arg =~ ^- ]]
+    then
+      continue
+    fi
+
+    # If current string is an argument, resolve as a path and add to mounts if it exists
+    # If it's a file, mount the `dirname`
     arg=$(rl $arg)
     if [[ -f $arg ]]
     then
       x=$(dirname $arg)
-      mounts="$mounts -v ${x}:${x}"
+      MOUNTS[$x]=$x
     elif [[ -d $arg ]]
     then
-      mounts="$mounts -v ${arg}:${arg}"
+      MOUNTS[$arg]=$arg
     fi
   done
-
-  docker run -w $pw --rm --user ${UID}:${GID} -i $mounts $@
+  cmd="docker run -w $pw --rm --user ${UID}:${GID} -i"
+  for M in ${MOUNTS[@]}
+  do
+    cmd="$cmd -v ${M}:${M}"
+  done
+  eval $cmd $@
 }
