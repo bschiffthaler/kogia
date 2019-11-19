@@ -26,4 +26,4 @@ do
   fi
 done
 
-docker run --rm --user ${UID}:${GID} -i $mounts bschiffthaler/bwa $@
+docker run -w $pw --rm --user ${UID}:${GID} -i $mounts bschiffthaler/bwa $@

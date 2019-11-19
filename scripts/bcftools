@@ -26,4 +26,4 @@ do
   fi
 done
 
-docker run --user ${UID}:${GID} --rm -i $mounts bschiffthaler/bcftools $@
+docker run -w $pw --user ${UID}:${GID} --rm -i $mounts bschiffthaler/bcftools $@
