@@ -1,16 +1,20 @@
 # Small bioinfo containers
 
 These containers are small (filesize) images for genomics/transcriptomics. Each
-submodule provides one app:
+submodule provides one app. Currently we have builds for:
 
-- bschiffthaler/bcftools
-- bschiffthaler/samtools
-- bschiffthaler/bwa
-- bschiffthaler/salmon
-- bschiffthaler/kallisto
-- bschiffthaler/fastqc
-- bschiffthaler/trimmomatic
-- bschiffthaler/bedtools
+- [bschiffthaler/bcftools](https://hub.docker.com/repository/docker/bschiffthaler/bcftools)
+- [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
+- [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
+- [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
+- [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)
+- [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
+- [bschiffthaler/multiqc](https://hub.docker.com/repository/docker/bschiffthaler/multiqc)
+- [bschiffthaler/salmon](https://hub.docker.com/repository/docker/bschiffthaler/salmon)
+- [bschiffthaler/samtools](https://hub.docker.com/repository/docker/bschiffthaler/samtools)
+- [bschiffthaler/sortmerna](https://hub.docker.com/repository/docker/bschiffthaler/sortmerna)
+- [bschiffthaler/trimmomatic](https://hub.docker.com/repository/docker/bschiffthaler/trimmomatic)
+
 
 ## Motivation
 
@@ -35,6 +39,14 @@ docker run \
   --user=${UID}:${GID} \
   -v $(pwd):$(pwd) -w $(pwd) --rm \
   bschiffthaler/bwa ... # Further argument passed to bwa
+```
+
+Alternatively there are simple bash scripts in the `/scripts` directory that
+wrap the docker images and allow users to call them very similaly to a native CLI
+application. As an example:
+
+```bash
+<kogia_root>/scripts/samtools index GRCh38.fa
 ```
 
 Some containers may run differently, see READMEs in the sub-directories.
