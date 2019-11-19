@@ -1,3 +1,3 @@
 #!/bin/bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/salmon $@
+gen_docker bschiffthaler/kallisto $@
