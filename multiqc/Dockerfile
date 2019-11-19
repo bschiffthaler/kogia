@@ -101,3 +101,6 @@ FROM alpine
 WORKDIR / 
 COPY --from=alpine-build-salmon /build/dist/multiqc /usr/local/bin/multiqc
 ENTRYPOINT ["/usr/local/bin/multiqc"]
+
+LABEL maintainer='github.com/bschiffthaler'
+LABEL software.version='1.7'
