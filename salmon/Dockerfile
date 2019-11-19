@@ -19,7 +19,7 @@ COPY proxy.cpp /build/tbb-2019_U9/src/tbbmalloc/proxy.cpp
 COPY proxy.h /build/tbb-2019_U9/src/tbbmalloc/proxy.h
 
 RUN make && \
-    cp ./build/linux_intel64_gcc_cc9.2.0_libc_kernel4.9.184_release/lib* \
+    cp ./build/linux_*_release/lib* \
         /usr/local/lib && \
     mkdir /usr/local/include && \
     cp -r ./include/tbb /usr/local/include/tbb && \
