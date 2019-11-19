@@ -12,7 +12,7 @@ RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.
 
 FROM alpine 
 WORKDIR / 
-RUN apk update && apk add --no-cache openjdk8-jre-base perl
+RUN apk update && apk add --no-cache openjdk8-jre fontconfig ttf-dejavu perl
 COPY --from=alpine-build-fastqc /build/FastQC /usr/local/bin/FastQC
 ENTRYPOINT ["/usr/local/bin/FastQC/fastqc"]
 
