@@ -3,17 +3,29 @@
 These containers are small (filesize) images for genomics/transcriptomics. Each
 submodule provides one app. Currently we have builds for:
 
-- [bschiffthaler/bcftools](https://hub.docker.com/repository/docker/bschiffthaler/bcftools)
-- [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
+### Alignment
+
 - [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
-- [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
-- [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)
+- [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
-- [bschiffthaler/multiqc](https://hub.docker.com/repository/docker/bschiffthaler/multiqc)
+
+### Pseudo-alignment/quantification
+
+- [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)
 - [bschiffthaler/salmon](https://hub.docker.com/repository/docker/bschiffthaler/salmon)
-- [bschiffthaler/samtools](https://hub.docker.com/repository/docker/bschiffthaler/samtools)
+
+### QC/Read preprocessing
+
+- [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
+- [bschiffthaler/multiqc](https://hub.docker.com/repository/docker/bschiffthaler/multiqc)
 - [bschiffthaler/sortmerna](https://hub.docker.com/repository/docker/bschiffthaler/sortmerna)
 - [bschiffthaler/trimmomatic](https://hub.docker.com/repository/docker/bschiffthaler/trimmomatic)
+
+### Toolboxes
+
+- [bschiffthaler/bcftools](https://hub.docker.com/repository/docker/bschiffthaler/bcftools)
+- [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
+- [bschiffthaler/samtools](https://hub.docker.com/repository/docker/bschiffthaler/samtools)
 
 
 ## Motivation
