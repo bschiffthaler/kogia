@@ -9,6 +9,10 @@ submodule provides one app. Currently we have builds for:
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
 
+### Assembly
+
+- [bschiffthaler/spades](https://hub.docker.com/repository/docker/bschiffthaler/spades)
+
 ### Pseudo-alignment/quantification
 
 - [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)
