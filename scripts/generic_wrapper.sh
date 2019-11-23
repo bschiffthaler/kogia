@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Call this script as you would the bwa executable. It acts as a thin layer
 # around the docker containers in kogia. Need bash 4+
 
@@ -23,7 +21,7 @@ function get_gid() {
 function get_suppl_groups() {
   /usr/bin/env python3 -c \
 'import os
-print(",".join([str(x) for x in os.getgroups() if not x == os.getgid()]))'
+print(" ".join([str(x) for x in os.getgroups() if not x == os.getgid()]))'
 }
 
 function gen_docker() {
@@ -54,8 +52,12 @@ function gen_docker() {
   done
   MYUID=$(get_uid)
   MYGID=$(get_gid)
-  MYSUPPGRPS=$(get_suppl_groups)
-  cmd="docker run -w $pw --rm --user ${MYUID}:${MYGID} --group-add ${MYSUPPGRPS} -i"
+  MYSUPPGRPS=""
+  for GRP in $(get_suppl_groups)
+  do
+    MYSUPPGRPS="$MYSUPPGRPS --group-add $GRP"
+  done
+  cmd="docker run -w $pw --rm --user ${MYUID}:${MYGID} ${MYSUPPGRPS} -i"
   for M in ${MOUNTS[@]}
   do
     cmd="$cmd -v ${M}:${M}"
