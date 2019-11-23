@@ -11,13 +11,13 @@ RUN wget http://cab.spbu.ru/files/release3.13.0/SPAdes-3.13.0-Linux.tar.gz
 
 RUN tar -xf SPAdes-3.13.0-Linux.tar.gz
 
-FROM alpine 
-WORKDIR / 
+FROM alpine
+WORKDIR /
 RUN apk add --no-cache python3 libc6-compat && \
     ln -s $(which python3) /usr/local/bin/python && \
     mkdir /usr/local/share/spades
-COPY --from=alpine-build-spades /build/SPAdes-3.13.0-Linux/bin/* /usr/local/bin
-COPY --from=alpine-build-spades /build/SPAdes-3.13.0-Linux/share/* /usr/local/share/spades
+COPY --from=alpine-build-spades /build/SPAdes-3.13.0-Linux/bin/* /usr/local/bin/
+COPY --from=alpine-build-spades /build/SPAdes-3.13.0-Linux/share/* /usr/local/share/spades/
 
 ENTRYPOINT ["/usr/local/bin/spades.py"]
 
