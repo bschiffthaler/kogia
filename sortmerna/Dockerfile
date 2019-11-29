@@ -20,4 +20,4 @@ COPY --from=alpine-build-sortmerna /build/bin/indexdb /usr/local/bin/indexdb
 ENTRYPOINT ["/usr/local/bin/sortmerna"]
 
 LABEL maintainer='github.com/bschiffthaler'
-LABEL software.version='${SORTMERNA_VERSION}'
+LABEL software.version=${SORTMERNA_VERSION}
