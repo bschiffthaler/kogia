@@ -5,6 +5,7 @@ submodule provides one app. Currently we have builds for:
 
 ### Alignment
 
+- [bschiffthaler/bowtie](https://hub.docker.com/repository/docker/bschiffthaler/bowtie)
 - [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
