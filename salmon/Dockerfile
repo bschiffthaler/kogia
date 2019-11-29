@@ -40,6 +40,10 @@ RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWX
     make 
 
 FROM alpine 
+
+ARG TBB_VERSION=2019_U9
+ARG SALMON_VERSION=1.0.0
+
 WORKDIR / 
 COPY --from=alpine-build-salmon /build/salmon-${SALMON_VERSION}/build/src/salmon /usr/local/bin/salmon
 COPY --from=alpine-build-salmon /usr/local/lib/libtbbmalloc.so /usr/local/lib/libtbbmalloc.so 

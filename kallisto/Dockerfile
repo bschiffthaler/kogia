@@ -18,6 +18,9 @@ WORKDIR /build/kallisto-${KALLISTO_VERSION}/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLINK=static .. && make
 
 FROM alpine 
+
+ARG KALLISTO_VERSION=0.46.1
+
 WORKDIR / 
 COPY --from=alpine-build-kallisto /build/kallisto-${KALLISTO_VERSION}/build/src/kallisto /usr/local/bin/kallisto
 ENTRYPOINT ["/usr/local/bin/kallisto"]

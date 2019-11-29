@@ -14,6 +14,9 @@ WORKDIR /build/bowtie-${BOWTIE_VERSION}
 RUN make NO_TBB=1 EXTRA_CFLAGS=-static LDFLAGS=-static
 
 FROM alpine 
+
+ARG BOWTIE_VERSION=1.2.3
+
 WORKDIR / 
 RUN apk add --no-cache python
 COPY --from=alpine-build-bowtie /build/bowtie-${BOWTIE_VERSION}/bowtie-* /usr/local/bin/

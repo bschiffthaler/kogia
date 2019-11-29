@@ -10,6 +10,9 @@ RUN make CFLAGS="-static -g -Wall -Wno-unused-function -O2"
 
 # Final exec image
 FROM alpine 
+
+ARG BWA_VERSION=0.7.17
+
 WORKDIR / 
 COPY --from=alpine-build-bwa /build/bwa-${BWA_VERSION}/bwa /usr/local/bin/bwa
 ENTRYPOINT ["/usr/local/bin/bwa"]

@@ -18,6 +18,9 @@ WORKDIR /build/bedtools2-${BEDTOOLS_VERSION}
 RUN make BT_CXXFLAGS='-static -O2' BT_LDFLAGS='-static'
 
 FROM alpine 
+
+ARG BEDTOOLS_VERSION=2.29.0
+
 WORKDIR / 
 COPY --from=alpine-build-bedtools /build/bedtools2-${BEDTOOLS_VERSION}/bin/bedtools /usr/local/bin/bedtools
 ENTRYPOINT ["/usr/local/bin/bedtools"]

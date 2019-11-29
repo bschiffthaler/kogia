@@ -12,6 +12,9 @@ RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmoma
     unzip Trimmomatic-${TRIMMOMATIC_VERSION}.zip
 
 FROM alpine
+
+ARG TRIMMOMATIC_VERSION=0.39
+
 WORKDIR /
 RUN apk update && apk add --no-cache openjdk8-jre-base
 COPY --from=alpine-build-trimmomatic /build/Trimmomatic-${TRIMMOMATIC_VERSION}/trimmomatic-${TRIMMOMATIC_VERSION}.jar /usr/loca/bin/trimmomatic-${TRIMMOMATIC_VERSION}.jar

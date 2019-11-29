@@ -14,6 +14,9 @@ RUN make CFLAGS='-O2 -Wc++-compat -static' LDFLAGS='-static' \
          CPPFLAGS='-static -DHAVE_KALLOC'
 
 FROM alpine 
+
+ARG MINIMAP2_VERSION=2.17
+
 WORKDIR / 
 COPY --from=alpine-build-minimap2 /build/minimap2-${MINIMAP2_VERSION}/minimap2 /usr/local/bin/minimap2
 ENTRYPOINT ["/usr/local/bin/minimap2"]

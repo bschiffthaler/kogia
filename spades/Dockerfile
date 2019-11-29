@@ -14,6 +14,9 @@ RUN wget http://cab.spbu.ru/files/release${SPADES_VERSION}/SPAdes-${SPADES_VERSI
 RUN tar -xf SPAdes-${SPADES_VERSION}-Linux.tar.gz
 
 FROM alpine
+
+ARG SPADES_VERSION=3.13.0
+
 WORKDIR /
 RUN apk add --no-cache python3 libc6-compat && \
     ln -s $(which python3) /usr/local/bin/python && \

@@ -105,6 +105,9 @@ RUN pyinstaller --additional-hooks-dir . --onefile \
     --hidden-import markdown --hidden-import multiqc $(which multiqc)
 
 FROM alpine 
+
+ARG MULTIQC_VERSION=1.8
+
 WORKDIR / 
 COPY --from=alpine-build-multiqc /build/dist/multiqc /usr/local/bin/multiqc
 ENTRYPOINT ["/usr/local/bin/multiqc"]

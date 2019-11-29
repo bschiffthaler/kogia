@@ -21,6 +21,9 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release ..
 RUN make
 
 FROM alpine 
+
+ARG DIAMOND_VERSION=0.9.29
+
 WORKDIR / 
 RUN apk update && apk add --no-cache zlib libstdc++ libgcc
 COPY --from=alpine-build-diamond /build/diamond-${DIAMOND_VERSION}/build/diamond /usr/local/bin/diamond

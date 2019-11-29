@@ -11,6 +11,9 @@ RUN bash sortmerna-${SORTMERNA_VERSION}-Linux.sh --skip-license
 
 
 FROM alpine 
+
+ARG SORTMERNA_VERSION=3.0.4
+
 WORKDIR / 
 COPY --from=alpine-build-sortmerna /build/bin/sortmerna /usr/local/bin/sortmerna
 COPY --from=alpine-build-sortmerna /build/bin/indexdb /usr/local/bin/indexdb

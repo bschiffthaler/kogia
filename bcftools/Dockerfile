@@ -17,7 +17,10 @@ RUN ./configure && \
     LIBS="-lssl -lcrypto -lnghttp2 -lcurl" \
     LDFLAGS="-static"
 
-FROM alpine 
+FROM alpine
+
+ARG BCFTOOLS_VERSION=1.9
+
 WORKDIR / 
 COPY --from=alpine-build-bcftools /build/bcftools-${BCFTOOLS_VERSION}/bcftools /usr/local/bin/bcftools
 ENTRYPOINT ["/usr/local/bin/bcftools"]

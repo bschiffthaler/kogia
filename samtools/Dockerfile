@@ -18,6 +18,9 @@ RUN ./configure && \
     LDFLAGS="-static"
 
 FROM alpine 
+
+ARG SAMTOOLS_VERSION=1.9
+
 WORKDIR / 
 COPY --from=alpine-build-samtools /build/samtools-${SAMTOOLS_VERSION}/samtools /usr/local/bin/samtools
 ENTRYPOINT ["/usr/local/bin/samtools"]

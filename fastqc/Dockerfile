@@ -13,6 +13,9 @@ RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FAS
     chmod +x FastQC/fastqc
 
 FROM alpine 
+
+ARG FASTQC_VERSION=0.11.8
+
 WORKDIR / 
 RUN apk update && apk add --no-cache openjdk8-jre fontconfig ttf-dejavu perl
 COPY --from=alpine-build-fastqc /build/FastQC /usr/local/bin/FastQC
