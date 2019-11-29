@@ -1,10 +1,13 @@
 FROM alpine AS alpine-build-sortmerna
+
+ARG SORTMERNA_VERSION=3.0.4
+
 WORKDIR /build
 RUN apk update && apk add curl bash
 
 WORKDIR /build
-RUN curl -O -L https://github.com/biocore/sortmerna/releases/download/v3.0.4/sortmerna-3.0.4-Linux.sh
-RUN bash sortmerna-3.0.4-Linux.sh --skip-license
+RUN curl -O -L https://github.com/biocore/sortmerna/releases/download/v${SORTMERNA_VERSION}/sortmerna-${SORTMERNA_VERSION}-Linux.sh
+RUN bash sortmerna-${SORTMERNA_VERSION}-Linux.sh --skip-license
 
 
 FROM alpine 
@@ -14,4 +17,4 @@ COPY --from=alpine-build-sortmerna /build/bin/indexdb /usr/local/bin/indexdb
 ENTRYPOINT ["/usr/local/bin/sortmerna"]
 
 LABEL maintainer='github.com/bschiffthaler'
-LABEL software.version='3.0.4'
+LABEL software.version='${SORTMERNA_VERSION}'

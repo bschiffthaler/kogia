@@ -2,6 +2,9 @@ FROM alpine AS alpine-build-salmon
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG TBB_VERSION=2019_U9
+ARG SALMON_VERSION=1.0.0
+
 RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
     bzip2-dev xz-dev xz boost-static boost-dev curl-dev curl bash automake \
     autoconf linux-headers cmake
@@ -9,14 +12,14 @@ RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
 WORKDIR /build
 
 # We need to build TBB from source as the apk versions are really old
-RUN wget https://github.com/intel/tbb/archive/2019_U9.tar.gz && \
-    tar -xf 2019_U9.tar.gz
+RUN wget https://github.com/intel/tbb/archive/${TBB_VERSION}.tar.gz && \
+    tar -xf ${TBB_VERSION}.tar.gz
 
-WORKDIR /build/tbb-2019_U9
+WORKDIR /build/tbb-${TBB_VERSION}
 
 # Need patched files to build against musl
-COPY proxy.cpp /build/tbb-2019_U9/src/tbbmalloc/proxy.cpp
-COPY proxy.h /build/tbb-2019_U9/src/tbbmalloc/proxy.h
+COPY proxy.cpp /build/tbb-${TBB_VERSION}/src/tbbmalloc/proxy.cpp
+COPY proxy.h /build/tbb-${TBB_VERSION}/src/tbbmalloc/proxy.h
 
 RUN make && \
     cp ./build/linux_*_release/lib* \
@@ -26,10 +29,10 @@ RUN make && \
     cp -r ./include/serial /usr/local/include/serial
 
 WORKDIR /build/
-RUN wget https://github.com/COMBINE-lab/salmon/archive/v1.0.0.tar.gz && \
-    tar -xf v1.0.0.tar.gz
+RUN wget https://github.com/COMBINE-lab/salmon/archive/v${SALMON_VERSION}.tar.gz && \
+    tar -xf v${SALMON_VERSION}.tar.gz
 
-WORKDIR /build/salmon-1.0.0/build
+WORKDIR /build/salmon-${SALMON_VERSION}/build
 
 RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWXG|S_IRWXO)"' \
     CFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWXG|S_IRWXO)"' \
@@ -38,7 +41,7 @@ RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWX
 
 FROM alpine 
 WORKDIR / 
-COPY --from=alpine-build-salmon /build/salmon-1.0.0/build/src/salmon /usr/local/bin/salmon
+COPY --from=alpine-build-salmon /build/salmon-${SALMON_VERSION}/build/src/salmon /usr/local/bin/salmon
 COPY --from=alpine-build-salmon /usr/local/lib/libtbbmalloc.so /usr/local/lib/libtbbmalloc.so 
 COPY --from=alpine-build-salmon /usr/local/lib/libtbbmalloc.so.2 /usr/local/lib/libtbbmalloc.so.2 
 COPY --from=alpine-build-salmon /usr/local/lib/libtbbmalloc_proxy.so /usr/local/lib/libtbbmalloc_proxy.so 
@@ -51,5 +54,5 @@ RUN apk update && apk add --no-cache libstdc++ libc6-compat
 ENTRYPOINT ["/usr/local/bin/salmon"]
 
 LABEL maintainer='github.com/bschiffthaler'
-LABEL software.version='1.0.0'
+LABEL software.version=${SALMON_VERSION}
 
