@@ -14,12 +14,12 @@ WORKDIR /build
 # We need to build TBB from source as the apk versions are really old
 RUN wget https://github.com/intel/tbb/archive/${TBB_VERSION}.tar.gz && \
     tar -xf ${TBB_VERSION}.tar.gz
+WORKDIR /build
+RUN cp -r /build/tbb-${TBB_VERSION} /build/tbb-${TBB_VERSION}_new
+COPY tbb-${TBB_VERSION}-alpine-3.10.3.patch /build/tbb-${TBB_VERSION}-alpine-3.10.3.patch 
+RUN patch -p0 < tbb-${TBB_VERSION}-alpine-3.10.3.patch 
 
-WORKDIR /build/tbb-${TBB_VERSION}
-
-# Need patched files to build against musl
-COPY proxy.cpp /build/tbb-${TBB_VERSION}/src/tbbmalloc/proxy.cpp
-COPY proxy.h /build/tbb-${TBB_VERSION}/src/tbbmalloc/proxy.h
+WORKDIR /build/tbb-${TBB_VERSION}_new
 
 RUN make && \
     cp ./build/linux_*_release/lib* \
