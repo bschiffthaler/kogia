@@ -9,6 +9,7 @@ submodule provides one app. Currently we have builds for:
 - [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
+- [bschiffthaler/ncbi-blast](https://hub.docker.com/repository/docker/bschiffthaler/ncbi-blast)
 
 ### Assembly
 

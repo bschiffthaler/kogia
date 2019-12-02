@@ -1,0 +1,13 @@
+blastn
+blastp
+blastx
+deltablast
+dustmasker
+makeblastdb
+psiblast
+rpsblast
+rpstblastn
+segmasker
+tblastn
+tblastx
+windowmasker
