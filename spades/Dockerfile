@@ -27,4 +27,4 @@ COPY --from=alpine-build-spades /build/SPAdes-${SPADES_VERSION}-Linux/share/* /u
 ENTRYPOINT ["/usr/local/bin/spades.py"]
 
 LABEL maintainer='github.com/bschiffthaler'
-LABEL software.version='${SPADES_VERSION}'
+LABEL software.version=${SPADES_VERSION}
