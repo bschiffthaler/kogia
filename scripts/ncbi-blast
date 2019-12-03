@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+EXE=""
+case $1 in
+  blastn)
+    EXE=blastn
+    shift
+    ;;
+  blastp)
+    EXE=blastp
+    shift
+    ;;
+  blastx)
+    EXE=blastx
+    shift
+    ;;
+  deltablast)
+    EXE=deltablast
+    shift
+    ;;
+  dustmasker)
+    EXE=dustmasker
+    shift
+    ;;
+  makeblastdb)
+    EXE=makeblastdb
+    shift
+    ;;
+  psiblast)
+    EXE=psiblast
+    shift
+    ;;
+  rpsblast)
+    EXE=rpsblast
+    shift
+    ;;
+  rpsblastn)
+    EXE=rpsblastn
+    shift
+    ;;
+  segmasker)
+    EXE=segmasker
+    shift
+    ;;
+  tblastn)
+    EXE=tblastn
+    shift
+    ;;
+  tblastx)
+    EXE=tblastx
+    shift
+    ;;
+  windowmasker)
+    EXE=windowmasker
+    shift
+    ;;
+  *)
+    echo "Unknown BLAST command"
+    echo "Supported values are: blastn, blastp, blastx, deltablast, dustmasker, makeblastdb, psiblast, rpsblast, rpstblastn, segmasker, tblastn, tblastx, windowmasker"
+    exit 1
+    ;;
+esac
+
+gen_docker --entrypoint=$EXE bschiffthaler/ncbi-blast $@
