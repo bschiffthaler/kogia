@@ -13,7 +13,9 @@ submodule provides one app. Currently we have builds for:
 
 ### Assembly
 
+- [bschiffthaler/flye](https://hub.docker.com/repository/docker/bschiffthaler/flye)
 - [bschiffthaler/spades](https://hub.docker.com/repository/docker/bschiffthaler/spades)
+- [bschiffthaler/wtdbg2](https://hub.docker.com/repository/docker/bschiffthaler/wtdbg2)
 
 ### Pseudo-alignment/quantification
 
@@ -73,5 +75,4 @@ Some containers may run differently, see READMEs in the sub-directories.
 
 Pull requests are _very_ welcome. Contibuted Dockerfiles need to be based on
 alpine and should follow the two image build procedure (see the `bwa` image as
-an example). If dynamic libraries cannot be avoided, great care should be taken
-in what is included in the final image.
+an example).

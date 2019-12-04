@@ -1,0 +1,38 @@
+--- wtdbg2-2.5/mem_share.h
++++ wtdbg2-2.5_new/mem_share.h
+@@ -284,12 +284,12 @@
+ }
+ 
+ static inline int file_exists(const char *filename){
+-	char *realpath;
++	char *_realpath;
+ 	struct stat s;
+-	realpath = canonicalize_file_name(filename);
+-	if(realpath == NULL) return 0;
+-	if(stat(realpath, &s) == -1){ free(realpath); return 0; }
+-	free(realpath);
++	_realpath = realpath(filename, NULL);
++	if(_realpath == NULL) return 0;
++	if(stat(_realpath, &s) == -1){ free(_realpath); return 0; }
++	free(_realpath);
+ 	switch(s.st_mode & S_IFMT){
+ 		//case S_IFBLK:
+ 		//case S_IFCHR:
+@@ -303,12 +303,12 @@
+ }
+ 
+ static inline int dir_exists(const char *filename){
+-	char *realpath;
++	char *_realpath;
+ 	struct stat s;
+-	realpath = canonicalize_file_name(filename);
+-	if(realpath == NULL) return 0;
+-	if(stat(realpath, &s) == -1){ free(realpath); return 0; }
+-	free(realpath);
++	_realpath = realpath(filename, NULL);
++	if(_realpath == NULL) return 0;
++	if(stat(_realpath, &s) == -1){ free(_realpath); return 0; }
++	free(_realpath);
+ 	switch(s.st_mode & S_IFMT){
+ 		//case S_IFBLK:
+ 		//case S_IFCHR:
