@@ -2,7 +2,7 @@ FROM alpine AS alpine-build-samtools
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG SAMTOOLS_VERSION=1.9
+ARG SAMTOOLS_VERSION=1.10
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
     curl-dev ncurses-dev ncurses-static curl-static zlib-static bzip2-static \
@@ -19,7 +19,7 @@ RUN ./configure && \
 
 FROM alpine 
 
-ARG SAMTOOLS_VERSION=1.9
+ARG SAMTOOLS_VERSION=1.10
 
 WORKDIR / 
 COPY --from=alpine-build-samtools /build/samtools-${SAMTOOLS_VERSION}/samtools /usr/local/bin/samtools
