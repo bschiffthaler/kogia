@@ -7,6 +7,7 @@ RUN apk update && apk add python3 build-base zlib-dev libpng-dev freetype-dev \
 
 WORKDIR /build
 
+RUN pip3 install --upgrade cython
 RUN pip3 install multiqc==${MULTIQC_VERSION}
 
 RUN git clone https://github.com/pyinstaller/pyinstaller
