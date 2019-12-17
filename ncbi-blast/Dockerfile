@@ -1,11 +1,11 @@
 # Build image
 FROM alpine AS alpine-build-blast
-ARG BLAST_VERSION=2.9.0
+ARG BLAST_VERSION=2.10.0
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 WORKDIR /build
 RUN apk update && apk add build-base lapack-dev libc6-compat libexecinfo-dev curl-dev libssh-dev zlib-dev wget
-RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-${BLAST_VERSION}+-src.tar.gz
+RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${BLAST_VERSION}/ncbi-blast-${BLAST_VERSION}+-src.tar.gz
 RUN tar -xvf ncbi-blast-${BLAST_VERSION}+-src.tar.gz
 RUN cp -r ncbi-blast-${BLAST_VERSION}+-src ncbi-blast-${BLAST_VERSION}+-src_new
 COPY ncbi-blast-${BLAST_VERSION}-alpine-3.10.3.patch ncbi-blast-${BLAST_VERSION}-alpine-3.10.3.patch
@@ -26,7 +26,7 @@ RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseM
 # Final exec image
 FROM alpine 
 
-ARG BLAST_VERSION=2.9.0
+ARG BLAST_VERSION=2.10.0
 
 WORKDIR / 
 
