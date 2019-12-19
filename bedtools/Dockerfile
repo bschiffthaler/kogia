@@ -2,7 +2,7 @@ FROM alpine AS alpine-build-bedtools
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG BEDTOOLS_VERSION=2.29.1
+ARG BEDTOOLS_VERSION=2.29.2
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
     curl-dev curl-static zlib-static bzip2-static openssl-libs-static  \
@@ -19,7 +19,7 @@ RUN make BT_CXXFLAGS='-static -O2' BT_LDFLAGS='-static'
 
 FROM alpine 
 
-ARG BEDTOOLS_VERSION=2.29.1
+ARG BEDTOOLS_VERSION=2.29.2
 
 WORKDIR / 
 COPY --from=alpine-build-bedtools /build/bedtools2-${BEDTOOLS_VERSION}/bin/bedtools /usr/local/bin/bedtools
