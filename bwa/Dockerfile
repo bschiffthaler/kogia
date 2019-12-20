@@ -2,7 +2,7 @@
 FROM alpine AS alpine-build-bwa
 ARG BWA_VERSION=0.7.17
 WORKDIR /build
-RUN apk update && apk add build-base wget zlib-dev tar
+RUN apk update && apk add build-base wget zlib-dev tar zlib-static
 RUN wget https://github.com/lh3/bwa/releases/download/v${BWA_VERSION}/bwa-${BWA_VERSION}.tar.bz2
 RUN tar -xf bwa-${BWA_VERSION}.tar.bz2
 WORKDIR /build/bwa-${BWA_VERSION}

@@ -1,6 +1,7 @@
 FROM alpine AS alpine-build-multiqc
 
 ARG MULTIQC_VERSION=1.8
+ARG PYTHON_VERSION=3.8
 
 RUN apk update && apk add python3 build-base zlib-dev libpng-dev freetype-dev \
     libc6-compat python3-dev git
@@ -67,42 +68,42 @@ RUN echo "from PyInstaller.utils.hooks import copy_metadata" > hook-networkx.py
 RUN echo "datas = copy_metadata('networkx')" >> hook-networkx.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-numpy.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-numpy.py
 RUN echo "datas = copy_metadata('numpy')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-numpy.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-numpy.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-markdown.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-markdown.py
 RUN echo "datas = copy_metadata('markdown')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-markdown.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-markdown.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-matplotlib.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-matplotlib.py
 RUN echo "datas += copy_metadata('matplotlib')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-matplotlib.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-matplotlib.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-jinja2.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-jinja2.py
 RUN echo "datas = copy_metadata('jinja2')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-jinja2.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-jinja2.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-pytz.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-pytz.py
 RUN echo "datas += copy_metadata('pytz')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-pytz.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-pytz.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-setuptools.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-setuptools.py
 RUN echo "datas = copy_metadata('setuptools')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-setuptools.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-setuptools.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-coloredlogs.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-coloredlogs.py
 RUN echo "datas = copy_metadata('coloredlogs')" >> \
-    /usr/lib/python3.7/site-packages/PyInstaller/hooks/hook-coloredlogs.py
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-coloredlogs.py
 
 RUN pyinstaller --additional-hooks-dir . --onefile \
-    --add-data /usr/lib/python3.7/site-packages/multiqc:multiqc \
+    --add-data /usr/lib/python${PYTHON_VERSION}/site-packages/multiqc:multiqc \
     --hidden-import markdown --hidden-import multiqc $(which multiqc)
 
 FROM alpine 
