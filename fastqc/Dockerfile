@@ -2,7 +2,7 @@ FROM alpine AS alpine-build-fastqc
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG FASTQC_VERSION=0.11.8
+ARG FASTQC_VERSION=0.11.9
 
 RUN apk update && apk add wget unzip
 
@@ -14,7 +14,7 @@ RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FAS
 
 FROM alpine 
 
-ARG FASTQC_VERSION=0.11.8
+ARG FASTQC_VERSION=0.11.9
 
 WORKDIR / 
 RUN apk update && apk add --no-cache openjdk8-jre fontconfig ttf-dejavu perl
