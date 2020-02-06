@@ -2,7 +2,7 @@ FROM alpine AS alpine-build-diamond
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG DIAMOND_VERSION=0.9.29
+ARG DIAMOND_VERSION=0.9.30
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev cmake
 
@@ -22,7 +22,7 @@ RUN make
 
 FROM alpine 
 
-ARG DIAMOND_VERSION=0.9.29
+ARG DIAMOND_VERSION=0.9.30
 
 WORKDIR / 
 RUN apk update && apk add --no-cache zlib libstdc++ libgcc
