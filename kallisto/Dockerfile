@@ -6,12 +6,16 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositor
 ARG KALLISTO_VERSION=0.46.1
 
 RUN apk update && apk add build-base wget hdf5-dev hdf5-static curl-dev \
-    curl-static zlib-dev zlib-static cmake autoconf libcurl
+    curl-static zlib-dev zlib-static cmake autoconf libcurl make autoconf automake
 
 WORKDIR /build
 
 RUN wget https://github.com/pachterlab/kallisto/archive/v${KALLISTO_VERSION}.tar.gz && \
     tar -xf v${KALLISTO_VERSION}.tar.gz
+
+WORKDIR /build/kallisto-${KALLISTO_VERSION}/ext/htslib
+
+RUN autoreconf && autoconf 
 
 WORKDIR /build/kallisto-${KALLISTO_VERSION}/build
 
