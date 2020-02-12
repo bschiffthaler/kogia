@@ -1,7 +1,10 @@
-FROM alpine AS alpine-build-fastqc
+ARG ALPINE_VERSION=3.11
+
+FROM alpine:${ALPINE_VERSION} AS alpine-build-fastqc
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG ALPINE_VERSION=3.11
 ARG FASTQC_VERSION=0.11.9
 
 RUN apk update && apk add wget unzip
@@ -12,7 +15,7 @@ RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FAS
     unzip fastqc_v${FASTQC_VERSION}.zip && \
     chmod +x FastQC/fastqc
 
-FROM alpine 
+FROM alpine:${ALPINE_VERSION}
 
 ARG FASTQC_VERSION=0.11.9
 

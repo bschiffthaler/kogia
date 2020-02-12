@@ -1,7 +1,10 @@
+ARG ALPINE_VERSION=3.11
+
 FROM alpine AS alpine-build-wtdbg2
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG ALPINE_VERSION=3.11
 ARG WTDBG2_VERSION=2.5
 ARG SAMTOOLS_VERSION=1.9
 ARG MINIMAP2_VERSION=2.17
@@ -14,8 +17,8 @@ WORKDIR /build
 RUN wget https://github.com/ruanjue/wtdbg2/archive/v${WTDBG2_VERSION}.tar.gz
 RUN tar -xf v${WTDBG2_VERSION}.tar.gz
 RUN cp -r wtdbg2-${WTDBG2_VERSION} wtdbg2-${WTDBG2_VERSION}_new
-COPY wtdbg2-${WTDBG2_VERSION}-alpine-3.10.3.patch wtdbg2-${WTDBG2_VERSION}-alpine-3.10.3.patch
-RUN patch -p0 < wtdbg2-${WTDBG2_VERSION}-alpine-3.10.3.patch
+COPY wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch
+RUN patch -p0 < wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch
 WORKDIR /build/wtdbg2-${WTDBG2_VERSION}_new
 RUN make GLIBS='-lm -lrt -lpthread -lz -lexecinfo'
 

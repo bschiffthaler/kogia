@@ -1,5 +1,8 @@
-FROM alpine AS alpine-build-sortmerna
+ARG ALPINE_VERSION=3.11
 
+FROM alpine:${ALPINE_VERSION} AS alpine-build-sortmerna
+
+ARG ALPINE_VERSION=3.11
 ARG SORTMERNA_VERSION=4.0.0
 
 WORKDIR /build
@@ -9,7 +12,7 @@ WORKDIR /build
 RUN curl -O -L https://github.com/biocore/sortmerna/releases/download/v${SORTMERNA_VERSION}/sortmerna-${SORTMERNA_VERSION}-Linux.sh
 RUN bash sortmerna-${SORTMERNA_VERSION}-Linux.sh --skip-license
 
-FROM alpine 
+FROM alpine:${ALPINE_VERSION}
 
 ARG SORTMERNA_VERSION=4.0.0
 
