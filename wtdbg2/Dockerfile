@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION=3.11
 
-FROM alpine AS alpine-build-wtdbg2
+FROM alpine:${ALPINE_VERSION} AS alpine-build-wtdbg2
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
@@ -37,7 +37,7 @@ RUN tar -xf v${MINIMAP2_VERSION}.tar.gz
 WORKDIR /build/minimap2-${MINIMAP2_VERSION}
 RUN make 
 
-FROM alpine
+FROM alpine:${ALPINE_VERSION}
 
 ARG WTDBG2_VERSION=2.5
 ARG SAMTOOLS_VERSION=1.9
