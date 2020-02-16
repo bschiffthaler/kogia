@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+EXE=""
+
+if [ $# -lt 1 ]
+then
+  echo "Too few arguments"
+  echo "Supported values are: convert_stacks[.pl] count_fixed_catalog_snps[.py] cstacks denovo_map[.pl] extract_interpop_chars[.pl] gstacks integrate_alignments[.py] phasedstacks populations process_radtags process_shortreads ref_map[.pl] sstacks stacks-dist-extract stacks-gdb stacks-integrate-alignments tsv2bam ustacks"
+  exit 1
+fi
+
+case $1 in
+  convert_stacks.pl | convert_stacks)
+    EXE=convert_stacks.pl
+    shift
+    ;;
+  count_fixed_catalog_snps.py | count_fixed_catalog_snps)
+    EXE=count_fixed_catalog_snps.py
+    shift
+    ;;
+  cstacks)
+    EXE=cstacks
+    shift
+    ;;
+  denovo_map.pl | denovo_map)
+    EXE=denovo_map.pl
+    shift
+    ;;
+  extract_interpop_chars.pl | extract_interpop_chars)
+    EXE=extract_interpop_chars.pl
+    shift
+    ;;
+  gstacks)
+    EXE=gstacks
+    shift
+    ;;
+  integrate_alignments.py | integrate_alignments)
+    EXE=integrate_alignments.py
+    shift
+    ;;
+  phasedstacks)
+    EXE=phasedstacks
+    shift
+    ;;
+  populations)
+    EXE=populations
+    shift
+    ;;
+  process_radtags)
+    EXE=process_radtags
+    shift
+    ;;
+  process_shortreads)
+    EXE=process_shortreads
+    shift
+    ;;
+  ref_map.pl | ref_map)
+    EXE=ref_map.pl
+    shift
+    ;;
+  sstacks)
+    EXE=sstacks
+    shift
+    ;;
+  stacks-dist-extract)
+    EXE=stacks-dist-extract
+    shift
+    ;;
+  stacks-gdb)
+    EXE=stacks-gdb
+    shift
+    ;;
+  stacks-integrate-alignments )
+    EXE=stacks-integrate-alignments 
+    shift
+    ;;
+  tsv2bam)
+    EXE=tsv2bam
+    shift
+    ;;
+  ustacks)
+    EXE=ustacks
+    shift
+    ;;
+  *)
+    echo "Unknown Stacks command"
+    echo "Supported values are: convert_stacks[.pl] count_fixed_catalog_snps[.py] cstacks denovo_map[.pl] extract_interpop_chars[.pl] gstacks integrate_alignments[.py] phasedstacks populations process_radtags process_shortreads ref_map[.pl] sstacks stacks-dist-extract stacks-gdb stacks-integrate-alignments tsv2bam ustacks"
+    exit 1
+    ;;
+esac
+
+gen_docker --entrypoint=$EXE bschiffthaler/stacks $@
