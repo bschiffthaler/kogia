@@ -4,7 +4,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.11
-ARG STACKS_VERSION=2.5
+ARG STACKS_VERSION=2.52
 
 RUN apk update && apk add build-base zlib-dev zlib-static autoconf automake \
     make
@@ -21,7 +21,7 @@ RUN CFLAGS='-include inc.h' CXXFLAGS='-include inc.h' \
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG STACKS_VERSION=2.5
+ARG STACKS_VERSION=2.52
 
 RUN apk add --no-cache perl python libgomp libstdc++
 
