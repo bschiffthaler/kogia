@@ -89,4 +89,9 @@ case $1 in
     ;;
 esac
 
-gen_docker --entrypoint=$EXE bschiffthaler/stacks $@
+if [[ -v KOGIA_STACKS_TAG ]]
+then
+  gen_docker --entrypoint=$EXE bschiffthaler/stacks:$KOGIA_STACKS_TAG $@
+else
+  gen_docker --entrypoint=$EXE bschiffthaler/stacks:latest $@
+fi

@@ -37,7 +37,6 @@ function gen_docker() {
     then
       continue
     fi
-
     # If current string is an argument, resolve as a path and add to mounts if it exists
     # If it's a file, mount the `dirname`
     arg=$(rl $arg)

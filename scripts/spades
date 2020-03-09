@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/spades $@
+if [[ -v KOGIA_SPADES_TAG ]]
+then
+  gen_docker bschiffthaler/spades:$KOGIA_SPADES_TAG $@
+else
+  gen_docker bschiffthaler/spades:latest $@
+fi

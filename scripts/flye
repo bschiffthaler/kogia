@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/flye $@
+if [[ -v KOGIA_FLYE_TAG ]]
+then
+  gen_docker bschiffthaler/flye:$KOGIA_FLYE_TAG $@
+else
+  gen_docker bschiffthaler/flye:latest $@
+fi

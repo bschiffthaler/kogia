@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/salmon $@
+if [[ -v KOGIA_SALMON_TAG ]]
+then
+  gen_docker bschiffthaler/salmon:$KOGIA_SALMON_TAG $@
+else
+  gen_docker bschiffthaler/salmon:latest $@
+fi

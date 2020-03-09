@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/diamond $@
+if [[ -v KOGIA_DIAMOND_TAG ]]
+then
+  gen_docker bschiffthaler/diamond:$KOGIA_DIAMOND_TAG $@
+else
+  gen_docker bschiffthaler/diamond:latest $@
+fi

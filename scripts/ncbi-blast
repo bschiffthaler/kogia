@@ -61,4 +61,9 @@ case $1 in
     ;;
 esac
 
-gen_docker --entrypoint=$EXE bschiffthaler/ncbi-blast $@
+if [[ -v KOGIA_NCBI_BLAST_TAG ]]
+then
+  gen_docker --entrypoint=$EXE bschiffthaler/ncbi-blast:$KOGIA_NCBI_BLAST_TAG $@
+else
+  gen_docker --entrypoint=$EXE bschiffthaler/ncbi-blast:latest $@
+fi

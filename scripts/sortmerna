@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/sortmerna $@
+if [[ -v KOGIA_SORTMERNA_TAG ]]
+then
+  gen_docker bschiffthaler/sortmerna:$KOGIA_SORTMERNA_TAG $@
+else
+  gen_docker bschiffthaler/sortmerna:latest $@
+fi

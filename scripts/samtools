@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 source $(dirname $0)/generic_wrapper.sh
-gen_docker bschiffthaler/samtools $@
+if [[ -v KOGIA_SAMTOOLS_TAG ]]
+then
+  gen_docker bschiffthaler/samtools:$KOGIA_SAMTOOLS_TAG $@
+else
+  gen_docker bschiffthaler/samtools:latest $@
+fi
