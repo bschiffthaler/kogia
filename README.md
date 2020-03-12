@@ -17,6 +17,10 @@ submodule provides one app. Currently we have builds for:
 - [bschiffthaler/spades](https://hub.docker.com/repository/docker/bschiffthaler/spades)
 - [bschiffthaler/wtdbg2](https://hub.docker.com/repository/docker/bschiffthaler/wtdbg2)
 
+### Population genomics
+
+- [bschiffthaler/stacks](https://hub.docker.com/repository/docker/bschiffthaler/stacks)
+
 ### Pseudo-alignment/quantification
 
 - [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)

@@ -1,7 +1,10 @@
-FROM alpine AS alpine-build-spades
+ARG ALPINE_VERSION=3.11
+
+FROM alpine:${ALPINE_VERSION} AS alpine-build-spades
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG ALPINE_VERSION=3.11
 ARG SPADES_VERSION=3.14.0
 
 RUN apk update && apk add wget
@@ -13,7 +16,7 @@ RUN wget http://cab.spbu.ru/files/release${SPADES_VERSION}/SPAdes-${SPADES_VERSI
 
 RUN tar -xf SPAdes-${SPADES_VERSION}-Linux.tar.gz
 
-FROM alpine
+FROM alpine:${ALPINE_VERSION}
 
 ARG SPADES_VERSION=3.14.0
 

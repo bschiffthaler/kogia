@@ -1,7 +1,10 @@
-FROM alpine AS alpine-build-samtools
+ARG ALPINE_VERSION=3.11
+
+FROM alpine:${ALPINE_VERSION} AS alpine-build-samtools
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG ALPINE_VERSION=3.11
 ARG SAMTOOLS_VERSION=1.10
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -17,7 +20,7 @@ RUN ./configure && \
     LIBS="-lssl -lcrypto -lnghttp2 -lcurl" \
     LDFLAGS="-static"
 
-FROM alpine 
+FROM alpine:${ALPINE_VERSION}
 
 ARG SAMTOOLS_VERSION=1.10
 

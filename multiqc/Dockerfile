@@ -1,5 +1,8 @@
-FROM alpine AS alpine-build-multiqc
+ARG ALPINE_VERSION=3.11
 
+FROM alpine:${ALPINE_VERSION} AS alpine-build-multiqc
+
+ARG ALPINE_VERSION=3.11
 ARG MULTIQC_VERSION=1.8
 ARG PYTHON_VERSION=3.8
 
@@ -106,7 +109,7 @@ RUN pyinstaller --additional-hooks-dir . --onefile \
     --add-data /usr/lib/python${PYTHON_VERSION}/site-packages/multiqc:multiqc \
     --hidden-import markdown --hidden-import multiqc $(which multiqc)
 
-FROM alpine 
+FROM alpine:${ALPINE_VERSION}
 
 ARG MULTIQC_VERSION=1.8
 

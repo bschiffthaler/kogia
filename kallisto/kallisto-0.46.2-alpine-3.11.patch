@@ -1,0 +1,11 @@
+diff -ruN kallisto-0.46.2/src/Bootstrap.h kallisto-0.46.2_new/src/Bootstrap.h
+--- kallisto-0.46.2/src/Bootstrap.h	2020-02-11 16:10:06.000000000 +0100
++++ kallisto-0.46.2_new/src/Bootstrap.h	2020-02-12 11:38:52.000000000 +0100
+@@ -10,6 +10,7 @@
+ #include "EMAlgorithm.h"
+ #include "Multinomial.hpp"
+ 
++typedef unsigned int uint;
+ 
+ class Bootstrap {
+     // needs:

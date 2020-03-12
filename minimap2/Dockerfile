@@ -1,7 +1,10 @@
-FROM alpine AS alpine-build-minimap2
+ARG ALPINE_VERSION=3.11
+
+FROM alpine:${ALPINE_VERSION} AS alpine-build-minimap2
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG ALPINE_VERSION=3.11
 ARG MINIMAP2_VERSION=2.17
 
 RUN apk update && apk add build-base wget zlib-dev zlib-static
@@ -13,7 +16,7 @@ WORKDIR /build/minimap2-${MINIMAP2_VERSION}
 RUN make CFLAGS='-O2 -Wc++-compat -static' LDFLAGS='-static' \
          CPPFLAGS='-static -DHAVE_KALLOC'
 
-FROM alpine 
+FROM alpine:${ALPINE_VERSION}
 
 ARG MINIMAP2_VERSION=2.17
 

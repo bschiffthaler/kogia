@@ -1,7 +1,10 @@
+ARG ALPINE_VERSION=3.11
+
 FROM alpine AS alpine-build-salmon
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
+ARG ALPINE_VERSION=3.11
 ARG TBB_VERSION=2019_U9
 ARG SALMON_VERSION=1.1.0
 
@@ -16,8 +19,8 @@ RUN wget https://github.com/intel/tbb/archive/${TBB_VERSION}.tar.gz && \
     tar -xf ${TBB_VERSION}.tar.gz
 WORKDIR /build
 RUN cp -r /build/tbb-${TBB_VERSION} /build/tbb-${TBB_VERSION}_new
-COPY tbb-${TBB_VERSION}-alpine-3.10.3.patch /build/tbb-${TBB_VERSION}-alpine-3.10.3.patch 
-RUN patch -p0 < tbb-${TBB_VERSION}-alpine-3.10.3.patch 
+COPY tbb-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch /build/tbb-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch 
+RUN patch -p0 < tbb-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch 
 
 WORKDIR /build/tbb-${TBB_VERSION}_new
 
@@ -39,7 +42,7 @@ RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWX
     cmake .. && \
     make 
 
-FROM alpine 
+FROM alpine:${ALPINE_VERSION}
 
 ARG TBB_VERSION=2019_U9
 ARG SALMON_VERSION=1.1.0
