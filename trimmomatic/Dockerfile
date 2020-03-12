@@ -20,8 +20,10 @@ ARG TRIMMOMATIC_VERSION=0.39
 
 WORKDIR /
 RUN apk update && apk add --no-cache openjdk8-jre-base
-COPY --from=alpine-build-trimmomatic /build/Trimmomatic-${TRIMMOMATIC_VERSION}/trimmomatic-${TRIMMOMATIC_VERSION}.jar /usr/loca/bin/trimmomatic-${TRIMMOMATIC_VERSION}.jar
-ENTRYPOINT ["java", "-jar", "/usr/loca/bin/trimmomatic-${TRIMMOMATIC_VERSION}.jar"]
+COPY --from=alpine-build-trimmomatic /build/Trimmomatic-${TRIMMOMATIC_VERSION}/trimmomatic-${TRIMMOMATIC_VERSION}.jar /usr/local/bin/trimmomatic-${TRIMMOMATIC_VERSION}.jar
+ENV EXE=/usr/local/bin/trimmomatic-${TRIMMOMATIC_VERSION}.jar
+COPY run.sh /usr/local/bin/run.sh
+ENTRYPOINT ["/usr/local/bin/run.sh"]
 
 LABEL maintainer='github.com/bschiffthaler'
 LABEL software.version=${TRIMMOMATIC_VERSION}
