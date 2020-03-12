@@ -17,6 +17,9 @@ function get_gid() {
   /usr/bin/env python3 -c 'import os; print(os.getgid())'
 }
 
+# Detect podman
+IS_PODMAN=$(docker -v | grep -o podman)
+
 # Don't mess with the indentation...
 function get_suppl_groups() {
   /usr/bin/env python3 -c \
@@ -57,7 +60,13 @@ function gen_docker() {
   do
     MYSUPPGRPS="$MYSUPPGRPS --group-add $GRP"
   done
-  cmd="docker run -w $pw --rm --user ${MYUID}:${MYGID} ${MYSUPPGRPS} -i"
+  cmd=""
+  if [ -z $IS_PODMAN ]
+  then
+    cmd="docker run -w $pw --rm --user ${MYUID}:${MYGID} ${MYSUPPGRPS} -i"
+  else
+    cmd="docker run --privileged -w $pw --rm -i"
+  fi
   for M in ${MOUNTS[@]}
   do
     cmd="$cmd -v ${M}:${M}"
