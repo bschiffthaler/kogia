@@ -7,7 +7,7 @@ ARG ALPINE_VERSION=3.11
 ARG STACKS_VERSION=2.52
 
 RUN apk update && apk add build-base zlib-dev zlib-static autoconf automake \
-    make
+    make sed
 
 # WTDBG2
 WORKDIR /build
@@ -18,6 +18,7 @@ RUN autoreconf && autoconf
 RUN echo '#define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)' > inc.h
 RUN CFLAGS='-include inc.h' CXXFLAGS='-include inc.h' \
     ./configure && make
+RUN make install 
 
 FROM alpine:${ALPINE_VERSION}
 
@@ -27,17 +28,17 @@ RUN apk add --no-cache perl python libgomp libstdc++
 
 WORKDIR / 
 
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/cstacks /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/gstacks /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/ustacks /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/sstacks /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/phasedstacks /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/populations /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/process_shortreads /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/process_radtags /usr/local/bin/
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/tsv2bam /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/cstacks /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/gstacks /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/ustacks /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/sstacks /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/phasedstacks /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/populations /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/process_shortreads /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/process_radtags /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/tsv2bam /usr/local/bin/
 
-COPY --from=alpine-build-stacks /build/stacks-${STACKS_VERSION}/scripts/* /usr/local/bin/
+COPY --from=alpine-build-stacks /usr/local/bin/* /usr/local/bin/
 
 RUN chmod a+x /usr/local/bin/*
 
