@@ -1,5 +1,5 @@
---- tbb-2019_U9/src/tbbmalloc/proxy.cpp
-+++ tbb-2019_U9_new/src/tbbmalloc/proxy.cpp
+--- oneTBB-2019_U9/src/tbbmalloc/proxy.cpp
++++ oneTBB-2019_U9_new/src/tbbmalloc/proxy.cpp
 @@ -24,15 +24,6 @@
  // of aligned_alloc as required by new C++ standard, this makes it hard to
  // redefine aligned_alloc here. However, running on systems with new libc
@@ -16,8 +16,8 @@
  #endif // __linux__ && !__ANDROID__
  
  #include "proxy.h"
---- tbb-2019_U9/src/tbbmalloc/proxy.h
-+++ tbb-2019_U9_new/src/tbbmalloc/proxy.h
+--- oneTBB-2019_U9/src/tbbmalloc/proxy.h
++++ oneTBB-2019_U9_new/src/tbbmalloc/proxy.h
 @@ -28,6 +28,21 @@
  
  #include <stddef.h>

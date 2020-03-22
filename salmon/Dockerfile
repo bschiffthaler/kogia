@@ -15,14 +15,14 @@ RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
 WORKDIR /build
 
 # We need to build TBB from source as the apk versions are really old
-RUN wget https://github.com/intel/tbb/archive/${TBB_VERSION}.tar.gz && \
+RUN wget https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz && \
     tar -xf ${TBB_VERSION}.tar.gz
 WORKDIR /build
-RUN cp -r /build/tbb-${TBB_VERSION} /build/tbb-${TBB_VERSION}_new
-COPY tbb-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch /build/tbb-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch 
-RUN patch -p0 < tbb-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch 
+RUN cp -r /build/oneTBB-${TBB_VERSION} /build/oneTBB-${TBB_VERSION}_new
+COPY oneTBB-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch /build/oneTBB-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch 
+RUN patch -p0 < oneTBB-${TBB_VERSION}-alpine-${ALPINE_VERSION}.patch 
 
-WORKDIR /build/tbb-${TBB_VERSION}_new
+WORKDIR /build/oneTBB-${TBB_VERSION}_new
 
 RUN make && \
     cp ./build/linux_*_release/lib* \
