@@ -1,7 +1,12 @@
 # Small bioinfo containers
 
 These containers are small (filesize) images for genomics/transcriptomics. Each
-submodule provides one app. Currently we have builds for:
+submodule provides one app.
+
+If you find this useful in your research, please cite the DOI:
+[![DOI](https://zenodo.org/badge/222556447.svg)](https://zenodo.org/badge/latestdoi/222556447)
+
+Currently we have builds for:
 
 ### Alignment
 
