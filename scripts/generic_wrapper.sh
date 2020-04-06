@@ -66,6 +66,10 @@ function gen_docker() {
   else
     cmd="docker run --privileged -w $pw --rm -i"
   fi
+  if [[ -v KOGIA_DOCKER_OPTS ]]
+  then
+    cmd="$cmd $KOGIA_DOCKER_OPTS"
+  fi
   for M in ${MOUNTS[@]}
   do
     cmd="$cmd -v ${M}:${M}"
