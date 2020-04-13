@@ -5,7 +5,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.11
-ARG DIAMOND_VERSION=0.9.30
+ARG DIAMOND_VERSION=0.9.31
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev cmake
 
@@ -25,7 +25,7 @@ RUN make
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG DIAMOND_VERSION=0.9.30
+ARG DIAMOND_VERSION=0.9.31
 
 WORKDIR / 
 RUN apk update && apk add --no-cache zlib libstdc++ libgcc
