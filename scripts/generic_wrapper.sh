@@ -17,9 +17,6 @@ function get_gid() {
   /usr/bin/env python3 -c 'import os; print(os.getgid())'
 }
 
-# Detect podman
-IS_PODMAN=$(docker -v | grep -o podman)
-
 # Don't mess with the indentation...
 function get_suppl_groups() {
   /usr/bin/env python3 -c \
@@ -28,6 +25,8 @@ print(" ".join([str(x) for x in os.getgroups() if not x == os.getgid()]))'
 }
 
 function gen_docker() {
+  # Detect podman
+  IS_PODMAN="$(docker -v | grep -oi podman || true)"
   pw=$(rl $(pwd))
   # Associative array serves as a unique container similar to a set
   # so we don't mount twice
