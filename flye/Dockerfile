@@ -8,7 +8,7 @@ ARG ALPINE_VERSION=3.11
 ARG FLYE_VERSION=2.7
 
 RUN apk update && apk add build-base zlib-dev libexecinfo-dev \
-    bzip2-dev xz-dev python3
+    bzip2-dev xz-dev python3 py3-setuptools
 
 # WTDBG2
 WORKDIR /build
