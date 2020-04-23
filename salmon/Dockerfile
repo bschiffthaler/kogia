@@ -6,7 +6,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/reposit
 
 ARG ALPINE_VERSION=3.11
 ARG TBB_VERSION=2019_U9
-ARG SALMON_VERSION=1.2.0
+ARG SALMON_VERSION=1.2.1
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
     bzip2-dev xz-dev xz boost-static boost-dev curl-dev curl bash automake \
@@ -45,7 +45,7 @@ RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWX
 FROM alpine:${ALPINE_VERSION}
 
 ARG TBB_VERSION=2019_U9
-ARG SALMON_VERSION=1.2.0
+ARG SALMON_VERSION=1.2.1
 
 WORKDIR / 
 COPY --from=alpine-build-salmon /build/salmon-${SALMON_VERSION}/build/src/salmon /usr/local/bin/salmon
