@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_ST_TAG ]]
+then
+  gen_docker bschiffthaler/stringtie:$KOGIA_ST_TAG $@
+else
+  gen_docker bschiffthaler/stringtie:latest $@
+fi

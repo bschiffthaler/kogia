@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_GFFC_TAG ]]
+then
+  gen_docker bschiffthaler/gffcompare:$KOGIA_GFFC_TAG $@
+else
+  gen_docker bschiffthaler/gffcompare:latest $@
+fi

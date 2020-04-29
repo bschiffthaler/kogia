@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_GFFR_TAG ]]
+then
+  gen_docker bschiffthaler/gffread:$KOGIA_GFFR_TAG $@
+else
+  gen_docker bschiffthaler/gffread:latest $@
+fi

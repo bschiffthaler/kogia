@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_TRMAP_TAG ]]
+then
+  gen_docker bschiffthaler/trmap:$KOGIA_TRMAP_TAG $@
+else
+  gen_docker bschiffthaler/trmap:latest $@
+fi
