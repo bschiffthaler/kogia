@@ -28,6 +28,9 @@ COPY execs.txt /build/execs.txt
 RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/bin/${l} /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finalbin; done < /build/execs.txt
 RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/lib/${l} /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finallib; done < /build/libs.txt
 
+RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finalbin/*
+RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finallib/*.so
+
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 

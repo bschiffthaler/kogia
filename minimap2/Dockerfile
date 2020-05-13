@@ -15,6 +15,7 @@ RUN wget https://github.com/lh3/minimap2/archive/v${MINIMAP2_VERSION}.tar.gz && 
 WORKDIR /build/minimap2-${MINIMAP2_VERSION}
 RUN make CFLAGS='-O2 -Wc++-compat -static' LDFLAGS='-static' \
          CPPFLAGS='-static -DHAVE_KALLOC'
+RUN strip minimap2
 
 FROM alpine:${ALPINE_VERSION}
 

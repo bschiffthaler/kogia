@@ -11,6 +11,7 @@ RUN apk update && apk add curl bash
 WORKDIR /build
 RUN curl -O -L https://github.com/biocore/sortmerna/releases/download/v${SORTMERNA_VERSION}/sortmerna-${SORTMERNA_VERSION}-Linux.sh
 RUN bash sortmerna-${SORTMERNA_VERSION}-Linux.sh --skip-license
+RUN strip /build/bin/sortmerna
 
 FROM alpine:${ALPINE_VERSION}
 

@@ -11,6 +11,7 @@ RUN wget https://github.com/lh3/bwa/releases/download/v${BWA_VERSION}/bwa-${BWA_
 RUN tar -xf bwa-${BWA_VERSION}.tar.bz2
 WORKDIR /build/bwa-${BWA_VERSION}
 RUN make CFLAGS="-static -g -Wall -Wno-unused-function -O2"
+RUN strip bwa
 
 # Final exec image
 FROM alpine:${ALPINE_VERSION}

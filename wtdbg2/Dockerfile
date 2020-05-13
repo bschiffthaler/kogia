@@ -21,6 +21,7 @@ COPY wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch wtdbg2-${WTDBG2_VER
 RUN patch -p0 < wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch
 WORKDIR /build/wtdbg2-${WTDBG2_VERSION}_new
 RUN make GLIBS='-lm -lrt -lpthread -lz -lexecinfo'
+RUN strip kbm2 pgzf wtdbg-cns wtpoa-cns wtdbg2
 
 # Samtools
 WORKDIR /build
@@ -29,6 +30,7 @@ RUN tar -xf samtools-${SAMTOOLS_VERSION}.tar.bz2
 WORKDIR /build/samtools-${SAMTOOLS_VERSION}
 RUN ./configure && \
     make
+RUN strip samtools
 
 # Minimap2
 WORKDIR /build
@@ -36,6 +38,7 @@ RUN wget https://github.com/lh3/minimap2/archive/v${MINIMAP2_VERSION}.tar.gz
 RUN tar -xf v${MINIMAP2_VERSION}.tar.gz
 WORKDIR /build/minimap2-${MINIMAP2_VERSION}
 RUN make 
+RUN strip minimap2
 
 FROM alpine:${ALPINE_VERSION}
 

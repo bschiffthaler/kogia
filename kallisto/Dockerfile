@@ -29,6 +29,7 @@ RUN autoreconf && autoconf
 WORKDIR /build/kallisto-${KALLISTO_VERSION}/build
 
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLINK=static .. && make
+RUN strip src/kallisto
 
 FROM alpine:${ALPINE_VERSION}
 

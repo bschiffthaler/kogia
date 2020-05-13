@@ -15,6 +15,7 @@ RUN wget https://sourceforge.net/projects/bowtie-bio/files/bowtie/${BOWTIE_VERSI
 RUN unzip bowtie-src-x86_64.zip
 WORKDIR /build/bowtie-${BOWTIE_VERSION}
 RUN make NO_TBB=1 EXTRA_CFLAGS=-static LDFLAGS=-static
+RUN strip bowtie bowtie-*
 
 FROM alpine:${ALPINE_VERSION} 
 

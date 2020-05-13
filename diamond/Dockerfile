@@ -22,6 +22,7 @@ WORKDIR /build/diamond-${DIAMOND_VERSION}/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release ..
 
 RUN make
+RUN strip diamond
 
 FROM alpine:${ALPINE_VERSION}
 

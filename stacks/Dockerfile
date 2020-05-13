@@ -19,7 +19,9 @@ RUN echo '#define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)' > inc.h
 RUN CFLAGS='-include inc.h' CXXFLAGS='-include inc.h' \
     ./configure && make
 RUN make install 
-
+RUN strip /usr/local/bin/*stacks /usr/local/bin/populations \
+  /usr/local/bin/process_shortreads /usr/local/bin/process_radtags \
+  /usr/local/bin/tsv2bam
 FROM alpine:${ALPINE_VERSION}
 
 ARG STACKS_VERSION=2.53

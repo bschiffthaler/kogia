@@ -19,6 +19,7 @@ RUN ./configure && \
     make CFLAGS="-g -O2 -static" \
     LIBS="-lssl -lcrypto -lnghttp2 -lcurl" \
     LDFLAGS="-static"
+RUN strip bcftools
 
 FROM alpine:${ALPINE_VERSION}
 
