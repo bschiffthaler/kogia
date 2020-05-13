@@ -20,8 +20,7 @@ FROM alpine:${ALPINE_VERSION}
 ARG GFFC_VERSION=0.11.6
 
 WORKDIR /
-COPY --from=alpine-build-gffcompare /usr/lib/libstdc++.so.6 /usr/lib/libstdc++.so.6
-COPY --from=alpine-build-gffcompare /usr/lib/libgcc_s.so.1 /usr/lib/libgcc_s.so.1
+RUN apk update && apk add --no-cache libstdc++ libgcc
 COPY --from=alpine-build-gffcompare /build/gffcompare/gffcompare /usr/local/bin/gffcompare
 ENTRYPOINT ["/usr/local/bin/gffcompare"]
 

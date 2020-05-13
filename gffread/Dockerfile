@@ -21,8 +21,7 @@ FROM alpine:${ALPINE_VERSION}
 ARG GFFR_VERSION=0.11.8
 
 WORKDIR /
-COPY --from=alpine-build-gffread /usr/lib/libstdc++.so.6 /usr/lib/libstdc++.so.6
-COPY --from=alpine-build-gffread /usr/lib/libgcc_s.so.1 /usr/lib/libgcc_s.so.1
+RUN apk update && apk add --no-cache libstdc++ libgcc
 COPY --from=alpine-build-gffread /build/gffread/gffread /usr/local/bin/gffread
 ENTRYPOINT ["/usr/local/bin/gffread"]
 

@@ -20,9 +20,9 @@ FROM alpine:${ALPINE_VERSION}
 
 ARG TRMAP_VERSION=0.11.6
 
+RUN apk update && apk add --no-cache libstdc++ libgcc
+
 WORKDIR / 
-COPY --from=alpine-build-trmap /usr/lib/libstdc++.so.6 /usr/lib/libstdc++.so.6
-COPY --from=alpine-build-trmap /usr/lib/libgcc_s.so.1 /usr/lib/libgcc_s.so.1
 COPY --from=alpine-build-trmap /build/gffcompare/trmap /usr/local/bin/trmap
 ENTRYPOINT ["/usr/local/bin/trmap"]
 
