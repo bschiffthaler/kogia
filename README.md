@@ -15,12 +15,19 @@ Currently we have builds for:
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
 - [bschiffthaler/ncbi-blast](https://hub.docker.com/repository/docker/bschiffthaler/ncbi-blast)
+- [bschiffthaler/star](https://hub.docker.com/repository/docker/bschiffthaler/star)
 
 ### Assembly
 
 - [bschiffthaler/flye](https://hub.docker.com/repository/docker/bschiffthaler/flye)
 - [bschiffthaler/spades](https://hub.docker.com/repository/docker/bschiffthaler/spades)
 - [bschiffthaler/wtdbg2](https://hub.docker.com/repository/docker/bschiffthaler/wtdbg2)
+- [bschiffthaler/stringtie](https://hub.docker.com/repository/docker/bschiffthaler/stringtie)
+
+### Assembly Evaluation
+
+- [bschiffthaler/gffcompare](https://hub.docker.com/repository/docker/bschiffthaler/gffcompare)
+- [bschiffthaler/trmap](https://hub.docker.com/repository/docker/bschiffthaler/trmap)
 
 ### Population genomics
 
@@ -42,6 +49,7 @@ Currently we have builds for:
 
 - [bschiffthaler/bcftools](https://hub.docker.com/repository/docker/bschiffthaler/bcftools)
 - [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
+- [bschiffthaler/gffread](https://hub.docker.com/repository/docker/bschiffthaler/gffread)
 - [bschiffthaler/samtools](https://hub.docker.com/repository/docker/bschiffthaler/samtools)
 
 
