@@ -6,7 +6,7 @@ ARG ALPINE_VERSION=3.11
 ARG SORTMERNA_VERSION=4.2.0
 
 WORKDIR /build
-RUN apk update && apk add curl bash
+RUN apk update && apk add curl bash build-base
 
 WORKDIR /build
 RUN curl -O -L https://github.com/biocore/sortmerna/releases/download/v${SORTMERNA_VERSION}/sortmerna-${SORTMERNA_VERSION}-Linux.sh

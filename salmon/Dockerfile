@@ -41,7 +41,7 @@ RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWX
     CFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWXG|S_IRWXO)"' \
     cmake -DNO_IPO=ON .. && \
     make 
-RUN strip /usr/local/lib/libtbb* src/salmon
+RUN strip /usr/local/lib/libtbb*.so.* src/salmon
 
 FROM alpine:${ALPINE_VERSION}
 

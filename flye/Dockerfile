@@ -16,7 +16,7 @@ RUN wget https://github.com/fenderglass/Flye/archive/${FLYE_VERSION}.tar.gz
 RUN tar -xf ${FLYE_VERSION}.tar.gz
 WORKDIR /build/Flye-${FLYE_VERSION}
 RUN LDFLAGS='-lexecinfo' python3 setup.py build
-RUN strip bin/*
+RUN strip bin/flye-*
 
 FROM alpine:${ALPINE_VERSION}
 
