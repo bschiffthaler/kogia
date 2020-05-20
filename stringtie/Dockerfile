@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.11
 FROM alpine:${ALPINE_VERSION} AS alpine-build-stringtie
 
 ARG ALPINE_VERSION=3.11
-ARG ST_VERSION=2.1.3
+ARG ST_VERSION=2.1.3b
 
 WORKDIR /build
 RUN apk update && apk add build-base git zlib-dev wget
@@ -16,11 +16,10 @@ RUN strip stringtie
 # Final exec image
 ARG ALPINE_VERSION=3.11
 FROM alpine:${ALPINE_VERSION}
-ARG ST_VERSION=2.1.3
+ARG ST_VERSION=2.1.3b
 
 WORKDIR /
-COPY --from=alpine-build-stringtie /usr/lib/libstdc++.so.6 /usr/lib/libstdc++.so.6
-COPY --from=alpine-build-stringtie /usr/lib/libgcc_s.so.1 /usr/lib/libgcc_s.so.1
+RUN apk update && apk add --no-cache libstdc++ libgcc
 COPY --from=alpine-build-stringtie /build/stringtie-${ST_VERSION}/stringtie /usr/local/bin/stringtie
 ENTRYPOINT ["/usr/local/bin/stringtie"]
 
