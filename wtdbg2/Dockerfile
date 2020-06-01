@@ -19,7 +19,7 @@ RUN tar -xf v${WTDBG2_VERSION}.tar.gz
 RUN cp -r wtdbg2-${WTDBG2_VERSION} wtdbg2-${WTDBG2_VERSION}_new
 COPY wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch
 RUN patch -p0 < wtdbg2-${WTDBG2_VERSION}-alpine-${ALPINE_VERSION}.patch
-WORKDIR /build/wtdbg2-${WTDBG2_VERSION}_new
+WORKDIR /build/wtdbg2-${WTDBG2_VERSION}
 RUN make GLIBS='-lm -lrt -lpthread -lz -lexecinfo'
 RUN strip kbm2 pgzf wtdbg-cns wtpoa-cns wtdbg2
 

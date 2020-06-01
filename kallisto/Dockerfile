@@ -18,9 +18,7 @@ ADD kallisto-${KALLISTO_VERSION}-alpine-${ALPINE_VERSION}.patch .
 RUN wget https://github.com/pachterlab/kallisto/archive/v${KALLISTO_VERSION}.tar.gz && \
     tar -xf v${KALLISTO_VERSION}.tar.gz && \
     cp -r kallisto-${KALLISTO_VERSION}  kallisto-${KALLISTO_VERSION}_new && \
-    patch -p0 < kallisto-${KALLISTO_VERSION}-alpine-${ALPINE_VERSION}.patch && \
-    rm -rf kallisto-${KALLISTO_VERSION} && \
-    mv kallisto-${KALLISTO_VERSION}_new kallisto-${KALLISTO_VERSION}
+    patch -p0 < kallisto-${KALLISTO_VERSION}-alpine-${ALPINE_VERSION}.patch
 
 WORKDIR /build/kallisto-${KALLISTO_VERSION}/ext/htslib
 

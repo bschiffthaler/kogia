@@ -15,21 +15,21 @@ RUN tar -xvf ncbi-blast-${BLAST_VERSION}+-src.tar.gz
 RUN cp -r ncbi-blast-${BLAST_VERSION}+-src ncbi-blast-${BLAST_VERSION}+-src_new
 COPY ncbi-blast-${BLAST_VERSION}-alpine-${ALPINE_VERSION}.patch ncbi-blast-${BLAST_VERSION}-alpine-${ALPINE_VERSION}.patch
 RUN patch -p0 < ncbi-blast-${BLAST_VERSION}-alpine-${ALPINE_VERSION}.patch
-WORKDIR /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++
+WORKDIR /build/ncbi-blast-${BLAST_VERSION}+-src/c++
 RUN ./configure --with-dll --without-gui --without-caution --with-64 --without-debug --with-bincopy --with-openmp
 RUN make LIBS='-lexecinfo -lz' CXXFLAGS='-Wno-cpp -fPIC' CFLAGS='-fPIC'
 
-RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finalbin
-RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finallib
+RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin
+RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib
 
 COPY libs.txt /build/libs.txt
 COPY execs.txt /build/execs.txt
 
-RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/bin/${l} /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finalbin; done < /build/execs.txt
-RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/lib/${l} /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finallib; done < /build/libs.txt
+RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/bin/${l} /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin; done < /build/execs.txt
+RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/lib/${l} /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib; done < /build/libs.txt
 
-RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finalbin/*
-RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finallib/*.so
+RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin/*
+RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so
 
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
@@ -44,8 +44,8 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN apk upgrade --no-cache
 RUN apk add --no-cache libc6-compat libexecinfo libgcc libstdc++
 
-COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finalbin/*  /usr/local/bin/
-COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src_new/c++/ReleaseMT/finallib/*.so /usr/local/lib/  
+COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin/*  /usr/local/bin/
+COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so /usr/local/lib/  
 
 ENTRYPOINT ["/usr/local/bin/blastn"]
 
