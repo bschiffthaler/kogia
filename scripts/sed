@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_SED_TAG ]]
+then
+  gen_docker bschiffthaler/sed:$KOGIA_SED_TAG $@
+else
+  gen_docker bschiffthaler/sed:latest $@
+fi
