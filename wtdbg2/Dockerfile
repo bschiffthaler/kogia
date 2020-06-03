@@ -50,12 +50,12 @@ ARG WITH_PERL
 RUN apk add --no-cache ncurses-libs xz-libs libbz2 libexecinfo libcurl perl
 
 WORKDIR / 
-COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}_new/kbm2 /usr/local/bin/
-COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}_new/pgzf /usr/local/bin/
-COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}_new/wtdbg-cns /usr/local/bin/
-COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}_new/wtpoa-cns /usr/local/bin/
-COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}_new/wtdbg2 /usr/local/bin/
-COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}_new/wtdbg2.pl /usr/local/bin/
+COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}/kbm2 /usr/local/bin/
+COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}/pgzf /usr/local/bin/
+COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}/wtdbg-cns /usr/local/bin/
+COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}/wtpoa-cns /usr/local/bin/
+COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}/wtdbg2 /usr/local/bin/
+COPY --from=alpine-build-wtdbg2 /build/wtdbg2-${WTDBG2_VERSION}/wtdbg2.pl /usr/local/bin/
 
 COPY --from=alpine-build-wtdbg2 /build/samtools-${SAMTOOLS_VERSION}/samtools /usr/local/bin/samtools
 
