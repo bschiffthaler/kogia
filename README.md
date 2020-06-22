@@ -51,6 +51,7 @@ Currently we have builds for:
 - [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
 - [bschiffthaler/gffread](https://hub.docker.com/repository/docker/bschiffthaler/gffread)
 - [bschiffthaler/samtools](https://hub.docker.com/repository/docker/bschiffthaler/samtools)
+- [bschiffthaler/htslib](https://hub.docker.com/repository/docker/bschiffthaler/htslib)
 
 
 ## Motivation

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_HTSLIB_TAG ]]
+then
+  gen_docker bschiffthaler/htslib:$KOGIA_HTSLIB_TAG $@
+else
+  gen_docker bschiffthaler/htslib:latest $@
+fi
