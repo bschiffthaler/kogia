@@ -1,12 +1,12 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 FROM alpine AS alpine-build-salmon
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 ARG TBB_VERSION=2020.2
-ARG SALMON_VERSION=1.2.1
+ARG SALMON_VERSION=1.3.0
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
     bzip2-dev xz-dev xz boost-static boost-dev curl-dev curl bash automake \
@@ -44,8 +44,8 @@ RUN strip /usr/local/lib/libtbb*.so.* src/salmon
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG TBB_VERSION=2019_U9
-ARG SALMON_VERSION=1.2.1
+ARG TBB_VERSION=2020.2
+ARG SALMON_VERSION=1.3.0
 
 WORKDIR / 
 COPY --from=alpine-build-salmon /build/salmon-${SALMON_VERSION}/build/src/salmon /usr/local/bin/salmon
