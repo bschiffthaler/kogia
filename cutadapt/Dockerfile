@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-cutadapt
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 ARG CUTADAPT_VERSION=2.10
 RUN apk update && apk add build-base zlib-dev libexecinfo-dev \
     bzip2-dev xz-dev python3 py3-setuptools py3-pip git python3-dev
