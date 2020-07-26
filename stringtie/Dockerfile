@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-stringtie
 
-ARG ALPINE_VERSION=3.11
-ARG ST_VERSION=2.1.3b
+ARG ALPINE_VERSION=3.12
+ARG ST_VERSION=2.1.4
 
 WORKDIR /build
 RUN apk update && apk add build-base git zlib-dev wget
@@ -14,9 +14,9 @@ RUN CXXFLAGS='-include /usr/include/c++/**/cstdint' make clean release
 RUN strip stringtie
 
 # Final exec image
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION}
-ARG ST_VERSION=2.1.3b
+ARG ST_VERSION=2.1.4
 
 WORKDIR /
 RUN apk update && apk add --no-cache libstdc++ libgcc
