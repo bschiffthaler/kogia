@@ -1,15 +1,15 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-tabix
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 ARG HTSLIB_VERSION=1.10.2
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
     curl-dev ncurses-dev ncurses-static curl-static zlib-static bzip2-static \
-    nghttp2-static openssl-libs-static
+    nghttp2-static openssl-libs-static brotli-static
 
 WORKDIR /build
 RUN wget https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSION}/htslib-${HTSLIB_VERSION}.tar.bz2
@@ -17,7 +17,7 @@ RUN tar -xf htslib-${HTSLIB_VERSION}.tar.bz2
 WORKDIR /build/htslib-${HTSLIB_VERSION}
 RUN ./configure && \
     make CFLAGS="-g -O2 -static" \
-    LIBS="-lcurl -lssl -lcrypto -lnghttp2 -lz -lbz2 -llzma" \
+    LIBS="-lcurl -lssl -lcrypto -lnghttp2 -lz -lbz2 -llzma -lbrotlienc-static -lbrotlidec-static -lbrotlicommon-static" \
     LDFLAGS="-static"
 RUN strip tabix bgzip htsfile
 
