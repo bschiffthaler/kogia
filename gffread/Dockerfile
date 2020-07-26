@@ -1,28 +1,28 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-gffread
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
+ARG GFFR_VERSION=0.12.1
 
-# clone the repo, latest was 0.11.8 - 3 changes more on 28/4/2020
-ARG GFFR_VERSION=0.11.8
+RUN apk update && apk add build-base make
 
 WORKDIR /build
-RUN apk update && apk add build-base git
-RUN git clone https://github.com/gpertea/gffread.git
-WORKDIR /build/gffread
+RUN wget https://github.com/gpertea/gffread/releases/download/v${GFFR_VERSION}/gffread-${GFFR_VERSION}.tar.gz
+RUN tar -xf gffread-${GFFR_VERSION}.tar.gz
+WORKDIR gffread-${GFFR_VERSION}
 RUN make release
 RUN strip gffread
 
 # Final exec image
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION}
 
-ARG GFFR_VERSION=0.11.8
+ARG GFFR_VERSION=0.12.1
 
 WORKDIR /
 RUN apk update && apk add --no-cache libstdc++ libgcc
-COPY --from=alpine-build-gffread /build/gffread/gffread /usr/local/bin/gffread
+COPY --from=alpine-build-gffread /build/gffread-${GFFR_VERSION}/gffread /usr/local/bin/gffread
 ENTRYPOINT ["/usr/local/bin/gffread"]
 
 LABEL maintainer='github.com/nicolasDelhomme'
