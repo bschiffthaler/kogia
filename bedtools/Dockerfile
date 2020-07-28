@@ -18,7 +18,7 @@ RUN wget https://github.com/arq5x/bedtools2/archive/v${BEDTOOLS_VERSION}.tar.gz 
 
 WORKDIR /build/bedtools2-${BEDTOOLS_VERSION}
 
-RUN BT_CXXFLAGS='-static -O2' BT_LDFLAGS='-static'\
+RUN make BT_CXXFLAGS='-static -O2' BT_LDFLAGS='-static'\
     BT_LIBS="-lz -lm -lbz2 -llzma -lpthread"
 RUN strip bin/bedtools
 
