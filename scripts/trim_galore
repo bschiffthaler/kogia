@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_TRIMGALORE_TAG ]]
+then
+  gen_docker bschiffthaler/trim-galore:$KOGIA_TRIMGALORE_TAG $@
+else
+  gen_docker bschiffthaler/trim-galore:latest $@
+fi

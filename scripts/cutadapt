@@ -2,7 +2,7 @@
 source $(dirname $0)/generic_wrapper.sh
 if [[ -v KOGIA_CUTADAPT_TAG ]]
 then
-  gen_docker cutadapt:$KOGIA_CUTADAPT_TAG $@
+  gen_docker bschiffthaler/cutadapt:$KOGIA_CUTADAPT_TAG $@
 else
-  gen_docker cutadapt:latest $@
+  gen_docker bschiffthaler/cutadapt:latest $@
 fi
