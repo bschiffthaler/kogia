@@ -40,9 +40,11 @@ Currently we have builds for:
 
 ### QC/Read preprocessing
 
+- [bschiffthaler/cutadapt](https://hub.docker.com/repository/docker/bschiffthaler/cutadapt)
 - [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
 - [bschiffthaler/multiqc](https://hub.docker.com/repository/docker/bschiffthaler/multiqc)
 - [bschiffthaler/sortmerna](https://hub.docker.com/repository/docker/bschiffthaler/sortmerna)
+- [bschiffthaler/trim-galore](https://hub.docker.com/repository/docker/bschiffthaler/trim-galore)
 - [bschiffthaler/trimmomatic](https://hub.docker.com/repository/docker/bschiffthaler/trimmomatic)
 
 ### Toolboxes
