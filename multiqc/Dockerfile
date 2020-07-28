@@ -1,17 +1,17 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-multiqc
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 ARG MULTIQC_VERSION=1.9
 ARG PYTHON_VERSION=3.8
 
 RUN apk update && apk add python3 build-base zlib-dev libpng-dev freetype-dev \
-    libc6-compat python3-dev git
+    libc6-compat python3-dev py3-pip py3-wheel git jpeg-dev
 
 WORKDIR /build
 
-RUN pip3 install --upgrade cython
+RUN pip3 install --upgrade cython tornado
 RUN pip3 install multiqc==${MULTIQC_VERSION}
 
 RUN git clone https://github.com/pyinstaller/pyinstaller
@@ -107,7 +107,8 @@ RUN echo "datas = copy_metadata('coloredlogs')" >> \
 
 RUN pyinstaller --additional-hooks-dir . --onefile \
     --add-data /usr/lib/python${PYTHON_VERSION}/site-packages/multiqc:multiqc \
-    --hidden-import markdown --hidden-import multiqc $(which multiqc)
+    --hidden-import markdown --hidden-import multiqc --hidden-import packaging.requirements \
+    $(which multiqc)
 
 FROM alpine:${ALPINE_VERSION}
 
