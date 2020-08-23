@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-gffcompare
 
 ARG ALPINE_VERSION=3.12
-ARG GFFC_VERSION=0.11.7
+ARG GFFC_VERSION=0.11.8
 
 WORKDIR /build
 RUN apk update && apk add build-base make
@@ -16,7 +16,7 @@ RUN strip gffcompare
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG GFFC_VERSION=0.11.7
+ARG GFFC_VERSION=0.11.8
 
 WORKDIR /
 RUN apk update && apk add --no-cache libstdc++ libgcc
