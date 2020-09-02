@@ -16,8 +16,9 @@ ARG BBTOOLS_VERSION=38.86
 RUN apk add --no-cache openjdk11-jre-headless bash
 
 WORKDIR / 
-COPY --from=alpine-build-bbtools /build/bbmap/* /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/bbmap.sh"]
+COPY --from=alpine-build-bbtools /build/bbmap /usr/local/bin/bbmap
+ENV PATH="/usr/local/bin/bbmap:$PATH"
+ENTRYPOINT ["/usr/local/bin/bbmap/bbmap.sh"]
 
 LABEL maintainer='github.com/bschiffthaler'
 LABEL software.version=${BBTOOLS_VERSION}
