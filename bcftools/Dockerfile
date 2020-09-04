@@ -15,18 +15,21 @@ WORKDIR /build
 RUN wget https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSION}/bcftools-${BCFTOOLS_VERSION}.tar.bz2
 RUN tar -xf bcftools-${BCFTOOLS_VERSION}.tar.bz2
 WORKDIR /build/bcftools-${BCFTOOLS_VERSION}
-RUN ./configure && \
-    make CFLAGS="-g -O2 -static" \
-    LIBS="-llzma -lssl -lcrypto -lnghttp2 -lcurl -lbrotlienc-static -lbrotlidec-static -lbrotlicommon-static" \
-    LDFLAGS="-static"
-RUN strip bcftools
+RUN ./configure --prefix=/build/inst && make && make install
+RUN strip /build/inst/bin/bcftools
+RUN for n in /build/inst/libexec/bcftools/*.so; do strip $n; done
+
 
 FROM alpine:${ALPINE_VERSION}
 
 ARG BCFTOOLS_VERSION=1.10.2
 
+RUN apk add --no-cache bash
+RUN apk add --no-cache libbz2 zlib libcurl xz-libs
+
 WORKDIR / 
-COPY --from=alpine-build-bcftools /build/bcftools-${BCFTOOLS_VERSION}/bcftools /usr/local/bin/bcftools
+COPY --from=alpine-build-bcftools /build/inst/bin/bcftools /usr/local/bin/bcftools
+COPY --from=alpine-build-bcftools /build/inst/libexec/bcftools /usr/local/libexec/bcftools
 ENTRYPOINT ["/usr/local/bin/bcftools"]
 
 LABEL maintainer='github.com/bschiffthaler'
