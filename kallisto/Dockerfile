@@ -1,12 +1,13 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-kallisto
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 
 ARG KALLISTO_VERSION=0.46.2
+ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget hdf5-dev hdf5-static curl-dev \
     curl-static zlib-dev zlib-static cmake autoconf libcurl make autoconf automake
@@ -26,7 +27,7 @@ RUN autoreconf && autoconf
 
 WORKDIR /build/kallisto-${KALLISTO_VERSION}/build
 
-RUN cmake -DCMAKE_BUILD_TYPE=Release -DLINK=static .. && make
+RUN cmake -DCMAKE_BUILD_TYPE=Release .. && make -j${BUILD_NCPU}
 RUN strip src/kallisto
 
 FROM alpine:${ALPINE_VERSION}
@@ -34,6 +35,8 @@ FROM alpine:${ALPINE_VERSION}
 ARG KALLISTO_VERSION=0.46.2
 
 WORKDIR / 
+RUN apk add --no-cache bash
+RUN apk add --no-cache libstdc++ libgcc
 COPY --from=alpine-build-kallisto /build/kallisto-${KALLISTO_VERSION}/build/src/kallisto /usr/local/bin/kallisto
 ENTRYPOINT ["/usr/local/bin/kallisto"]
 

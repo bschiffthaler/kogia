@@ -6,6 +6,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/reposit
 
 ARG ALPINE_VERSION=3.12
 ARG BCFTOOLS_VERSION=1.10.2
+ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
     curl-dev curl-static zlib-static bzip2-static openssl-libs-static  \
@@ -15,7 +16,7 @@ WORKDIR /build
 RUN wget https://github.com/samtools/bcftools/releases/download/${BCFTOOLS_VERSION}/bcftools-${BCFTOOLS_VERSION}.tar.bz2
 RUN tar -xf bcftools-${BCFTOOLS_VERSION}.tar.bz2
 WORKDIR /build/bcftools-${BCFTOOLS_VERSION}
-RUN ./configure --prefix=/build/inst && make && make install
+RUN ./configure --prefix=/build/inst && make -j${BUILD_NCPU} && make install
 RUN strip /build/inst/bin/bcftools
 RUN for n in /build/inst/libexec/bcftools/*.so; do strip $n; done
 

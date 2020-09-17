@@ -1,0 +1,10 @@
+--- salmon-1.3.0/include/BAMUtils.hpp
++++ salmon-1.3.0_new/include/BAMUtils.hpp
+@@ -9,6 +9,7 @@
+ }
+ 
+ #include <unordered_map>
++#include <string>
+ 
+ namespace salmon {
+   namespace bam_utils {

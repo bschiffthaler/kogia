@@ -1,10 +1,10 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-spades
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 ARG SPADES_VERSION=3.14.1
 
 RUN apk update && apk add wget
@@ -21,6 +21,7 @@ FROM alpine:${ALPINE_VERSION}
 ARG SPADES_VERSION=3.14.1
 
 WORKDIR /
+RUN apk add --no-cache bash
 RUN apk add --no-cache python3 libc6-compat && \
     ln -s $(which python3) /usr/local/bin/python && \
     mkdir /usr/local/share/spades

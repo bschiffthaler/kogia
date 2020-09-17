@@ -18,6 +18,7 @@ FROM alpine:${ALPINE_VERSION}
 ARG STAR_VERSION=2.7.5c
 
 WORKDIR / 
+RUN apk add --no-cache bash
 COPY --from=alpine-build-bwa /build/STAR-${STAR_VERSION}/bin/Linux_x86_64_static/STAR /usr/local/bin/STAR
 COPY --from=alpine-build-bwa /build/STAR-${STAR_VERSION}/bin/Linux_x86_64_static/STARlong /usr/local/bin/STARlong
 

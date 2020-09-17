@@ -7,11 +7,13 @@ ARG MULTIQC_VERSION=1.9
 ARG PYTHON_VERSION=3.8
 
 RUN apk update && apk add python3 build-base zlib-dev libpng-dev freetype-dev \
-    libc6-compat python3-dev py3-pip py3-wheel git jpeg-dev
+    libc6-compat python3-dev py3-pip py3-wheel ipython py3-tornado \
+    cython py3-jinja2 py3-future git jpeg-dev
 
 WORKDIR /build
 
-RUN pip3 install --upgrade cython tornado
+RUN pip3 install --upgrade pip
+RUN pip3 install matplotlib==3.0.3
 RUN pip3 install multiqc==${MULTIQC_VERSION}
 
 RUN git clone https://github.com/pyinstaller/pyinstaller
@@ -113,6 +115,8 @@ RUN pyinstaller --additional-hooks-dir . --onefile \
 FROM alpine:${ALPINE_VERSION}
 
 ARG MULTIQC_VERSION=1.9
+
+RUN apk add --no-cache bash
 
 WORKDIR / 
 COPY --from=alpine-build-multiqc /build/dist/multiqc /usr/local/bin/multiqc

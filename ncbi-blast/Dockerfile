@@ -1,10 +1,11 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-blast
 
-ARG ALPINE_VERSION=3.11
-ARG BLAST_VERSION=2.10.0
+ARG ALPINE_VERSION=3.12
+ARG BLAST_VERSION=2.10.1
+ARG BUILD_NCPU=1
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
@@ -17,7 +18,7 @@ COPY ncbi-blast-${BLAST_VERSION}-alpine-${ALPINE_VERSION}.patch ncbi-blast-${BLA
 RUN patch -p0 < ncbi-blast-${BLAST_VERSION}-alpine-${ALPINE_VERSION}.patch
 WORKDIR /build/ncbi-blast-${BLAST_VERSION}+-src/c++
 RUN ./configure --with-dll --without-gui --without-caution --with-64 --without-debug --with-bincopy --with-openmp
-RUN make LIBS='-lexecinfo -lz' CXXFLAGS='-Wno-cpp -fPIC' CFLAGS='-fPIC'
+RUN make -j${BUILD_NCPU} LIBS='-lexecinfo -lz' CXXFLAGS='-Wno-cpp -fPIC' CFLAGS='-fPIC'
 
 RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin
 RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib
@@ -34,14 +35,14 @@ RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG BLAST_VERSION=2.10.0
+ARG BLAST_VERSION=2.10.1
 
 WORKDIR / 
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories  
 
-RUN apk upgrade --no-cache
+RUN apk add --no-cache bash
 RUN apk add --no-cache libc6-compat libexecinfo libgcc libstdc++
 
 COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin/*  /usr/local/bin/

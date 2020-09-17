@@ -6,6 +6,8 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/reposit
 
 ARG ALPINE_VERSION=3.12
 ARG DIAMOND_VERSION=2.0.4
+ARG BUILD_NCPU=1
+
 RUN apk update && apk add build-base wget zlib-static zlib-dev cmake
 
 WORKDIR /build
@@ -20,7 +22,7 @@ WORKDIR /build/diamond-${DIAMOND_VERSION}/build
 # dynamic and get the necessary libs
 RUN cmake -DCMAKE_BUILD_TYPE=Release ..
 
-RUN make
+RUN make -j${BUILD_NCPU}
 RUN strip diamond
 
 FROM alpine:${ALPINE_VERSION}

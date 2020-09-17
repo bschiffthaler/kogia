@@ -1,10 +1,11 @@
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-stacks
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 ARG STACKS_VERSION=2.53
+ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base zlib-dev zlib-static autoconf automake \
     make sed
@@ -17,7 +18,7 @@ WORKDIR /build/stacks-${STACKS_VERSION}
 RUN autoreconf && autoconf
 RUN echo '#define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)' > inc.h
 RUN CFLAGS='-include inc.h' CXXFLAGS='-include inc.h' \
-    ./configure && make
+    ./configure && make -j${BUILD_NCPU}
 RUN make install 
 RUN strip /usr/local/bin/*stacks /usr/local/bin/populations \
   /usr/local/bin/process_shortreads /usr/local/bin/process_radtags \
@@ -26,10 +27,10 @@ FROM alpine:${ALPINE_VERSION}
 
 ARG STACKS_VERSION=2.53
 
-RUN apk add --no-cache perl python libgomp libstdc++
+RUN apk add --no-cache perl python3 libgomp libstdc++
 
 WORKDIR / 
-
+RUN apk add --no-cache bash
 COPY --from=alpine-build-stacks /usr/local/bin/cstacks /usr/local/bin/
 COPY --from=alpine-build-stacks /usr/local/bin/gstacks /usr/local/bin/
 COPY --from=alpine-build-stacks /usr/local/bin/ustacks /usr/local/bin/

@@ -1,0 +1,32 @@
+diff -Naur ncbi-blast-2.10.1+-src/c++/src/algo/blast/core/blast_kappa.c ncbi-blast-2.10.1+-src_new/c++/src/algo/blast/core/blast_kappa.c
+--- ncbi-blast-2.10.1+-src/c++/src/algo/blast/core/blast_kappa.c	2019-01-29 15:28:02.000000000 +0100
++++ ncbi-blast-2.10.1+-src_new/c++/src/algo/blast/core/blast_kappa.c	2019-12-17 15:45:57.996203433 +0100
+@@ -3413,12 +3413,11 @@
+ 
+     Boolean interrupt = FALSE;
+ #pragma omp parallel \
+-    default(none) num_threads(actual_num_threads) \
++    num_threads(actual_num_threads) \
+     if(actual_num_threads>1) \
+     shared(interrupt, seqsrc_tld, score_params_tld, hit_params_tld, \
+     gap_align_tld, results_tld, \
+     redoneMatches_tld, \
+-    STDERR_COMMA \
+     numQueries, numMatches, theseMatches, \
+     numFrames, program_number, subjectBlk_tld, positionBased, \
+     default_db_genetic_code, localScalingFactor, queryInfo, \
+diff -Naur ncbi-blast-2.10.1+-src/c++/src/app/blast/blast_app_util.cpp ncbi-blast-2.10.1+-src_new/c++/src/app/blast/blast_app_util.cpp
+--- ncbi-blast-2.10.1+-src/c++/src/app/blast/blast_app_util.cpp	2019-09-16 16:45:04.000000000 +0200
++++ ncbi-blast-2.10.1+-src_new/c++/src/app/blast/blast_app_util.cpp	2019-12-17 15:46:53.848115042 +0100
+@@ -976,11 +976,7 @@
+ 
+ void QueryBatchCleanup()
+ {
+-#if defined(NCBI_OS_LINUX) && HAVE_MALLOC_H
+-	malloc_trim(0);
+-#endif
+     return;
+-
+ }
+ 
+ END_NCBI_SCOPE

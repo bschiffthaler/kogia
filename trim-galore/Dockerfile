@@ -19,6 +19,7 @@ FROM bschiffthaler/fastqc:latest
 ARG TRIM_GALORE_VERSION=0.6.5
 
 WORKDIR /
+RUN apk add --no-cache bash
 RUN apk add --no-cache pigz
 COPY --from=alpine-build-trim-galore /build/TrimGalore-${TRIM_GALORE_VERSION}/trim_galore /usr/local/bin/trim_galore
 COPY --from=bschiffthaler/cutadapt:latest /usr/local/bin/cutadapt /usr/local/bin/cutadapt

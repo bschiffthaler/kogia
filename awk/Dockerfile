@@ -4,8 +4,8 @@ FROM alpine:${ALPINE_VERSION}
 ARG AWK_VERSION=5.1.0-r0
 
 WORKDIR / 
-
-RUN apk update --no-cache && apk add --no-cache gawk="${AWK_VERSION}"
+RUN apk add --no-cache bash
+RUN apk add --no-cache gawk="${AWK_VERSION}"
 
 ENTRYPOINT ["gawk"]
 
