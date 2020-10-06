@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+case $1 in
+  collect_homo.pl)
+    ;;
+  examine_SP.pl)
+    ;;
+  make_model.pl)
+    ;;
+  search_sORF.pl)
+    ;;
+  simulate.pl)
+    ;;
+  *)
+    echo "Unknown sORFfinder command"
+    echo "Supported values are: collect_homo.pl, examine_SP.pl, make_model.pl, search_sORF.pl or simulate.pl"
+    exit 1
+    ;;
+esac
+EXE=$1
+shift
+
+
+if [[ -v KOGIA_SOF_TAG ]]
+then
+  gen_docker --entrypoint=$EXE bschiffthaler/sorffinder:$KOGIA_SOF_TAG $@
+else
+  gen_docker --entrypoint=$EXE bschiffthaler/sorffinder:latest $@
+fi

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_CW_TAG ]]
+then
+  gen_docker bschiffthaler/clustalw:$KOGIA_CW_TAG $@
+else
+  gen_docker bschiffthaler/clustalw:latest $@
+fi

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_GT_TAG ]]
+then
+  gen_docker bschiffthaler/genometools:$KOGIA_GT_TAG $@
+else
+  gen_docker bschiffthaler/genometools:latest $@
+fi
