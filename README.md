@@ -17,6 +17,10 @@ Currently we have builds for:
 - [bschiffthaler/ncbi-blast](https://hub.docker.com/repository/docker/bschiffthaler/ncbi-blast)
 - [bschiffthaler/star](https://hub.docker.com/repository/docker/bschiffthaler/star)
 
+### Annotation
+
+- [bschiffthaler/sorffinder](https://hub.docker.com/repository/docker/bschiffthaler/sorffinder)
+
 ### Assembly
 
 - [bschiffthaler/flye](https://hub.docker.com/repository/docker/bschiffthaler/flye)
@@ -28,6 +32,10 @@ Currently we have builds for:
 
 - [bschiffthaler/gffcompare](https://hub.docker.com/repository/docker/bschiffthaler/gffcompare)
 - [bschiffthaler/trmap](https://hub.docker.com/repository/docker/bschiffthaler/trmap)
+
+### Multiple Alignment
+
+- [bschiffthaler/clustalw](https://hub.docker.com/repository/docker/bschiffthaler/clustalw)
 
 ### Population genomics
 
@@ -51,6 +59,7 @@ Currently we have builds for:
 
 - [bschiffthaler/bcftools](https://hub.docker.com/repository/docker/bschiffthaler/bcftools)
 - [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
+- [bschiffthaler/genometools](https://hub.docker.com/repository/docker/bschiffthaler/genometools)
 - [bschiffthaler/gffread](https://hub.docker.com/repository/docker/bschiffthaler/gffread)
 - [bschiffthaler/samtools](https://hub.docker.com/repository/docker/bschiffthaler/samtools)
 - [bschiffthaler/htslib](https://hub.docker.com/repository/docker/bschiffthaler/htslib)
