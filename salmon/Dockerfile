@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION=3.12
 
-FROM alpine AS alpine-build-salmon
+FROM alpine:${ALPINE_VERSION} AS alpine-build-salmon
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
