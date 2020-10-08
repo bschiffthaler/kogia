@@ -27,7 +27,7 @@ RUN autoreconf && autoconf
 
 WORKDIR /build/kallisto-${KALLISTO_VERSION}/build
 
-RUN cmake -DCMAKE_BUILD_TYPE=Release .. && make -j${BUILD_NCPU}
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DUSE_HDF5=ON .. && make -j${BUILD_NCPU}
 RUN strip src/kallisto
 
 FROM alpine:${ALPINE_VERSION}
