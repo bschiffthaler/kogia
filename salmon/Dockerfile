@@ -11,7 +11,7 @@ ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
     bzip2-dev xz-dev xz boost-static boost-dev curl-dev curl bash automake \
-    autoconf linux-headers cmake gnu-libiconv-dev
+    autoconf linux-headers cmake musl-utils
 
 WORKDIR /build
 
