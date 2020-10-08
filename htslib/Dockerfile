@@ -5,7 +5,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.12
-ARG HTSLIB_VERSION=1.10.2
+ARG HTSLIB_VERSION=1.11
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -22,7 +22,7 @@ RUN strip tabix bgzip htsfile
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG HTSLIB_VERSION=1.10.2
+ARG HTSLIB_VERSION=1.11
 
 WORKDIR / 
 RUN apk add --no-cache bash
