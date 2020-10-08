@@ -33,6 +33,16 @@ Currently we have builds for:
 - [bschiffthaler/gffcompare](https://hub.docker.com/repository/docker/bschiffthaler/gffcompare)
 - [bschiffthaler/trmap](https://hub.docker.com/repository/docker/bschiffthaler/trmap)
 
+### Data Retrieval
+
+- [bschiffthaler/basemount](https://hub.docker.com/repository/docker/bschiffthaler/basemount)
+
+### Linux Pipeliners
+
+- [bschiffthaler/awk](https://hub.docker.com/repository/docker/bschiffthaler/awk)
+- [bschiffthaler/curl](https://hub.docker.com/repository/docker/bschiffthaler/curl)
+- [bschiffthaler/sed](https://hub.docker.com/repository/docker/bschiffthaler/sed)
+
 ### Multiple Alignment
 
 - [bschiffthaler/clustalw](https://hub.docker.com/repository/docker/bschiffthaler/clustalw)
@@ -57,6 +67,7 @@ Currently we have builds for:
 
 ### Toolboxes
 
+- [bschiffthaler/bbtools](https://hub.docker.com/repository/docker/bschiffthaler/bbtools)
 - [bschiffthaler/bcftools](https://hub.docker.com/repository/docker/bschiffthaler/bcftools)
 - [bschiffthaler/bedtools](https://hub.docker.com/repository/docker/bschiffthaler/bedtools)
 - [bschiffthaler/genometools](https://hub.docker.com/repository/docker/bschiffthaler/genometools)
@@ -103,7 +114,7 @@ Some containers may run differently, see READMEs in the sub-directories.
 ## Contributing
 
 Pull requests are _very_ welcome. Contibuted Dockerfiles need to be based on
-alpine and should follow the two image build procedure (see the `bwa` image as
+alpine (with rare exceptions) and should follow the two image build procedure (see the `bwa` image as
 an example).
 
 Thanks to all who have contributed so far: @nicolasDelhomme @krbe9202
