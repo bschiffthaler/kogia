@@ -37,6 +37,10 @@ Currently we have builds for:
 
 - [bschiffthaler/basemount](https://hub.docker.com/repository/docker/bschiffthaler/basemount)
 
+### K-mer counting
+
+- [bschiffthaler/jellyfish](https://hub.docker.com/repository/docker/bschiffthaler/jellyfish)
+
 ### Linux Pipeliners
 
 - [bschiffthaler/awk](https://hub.docker.com/repository/docker/bschiffthaler/awk)
