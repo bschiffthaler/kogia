@@ -41,7 +41,7 @@ WORKDIR /build/salmon-${SALMON_VERSION}/build
 
 RUN CXXFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWXG|S_IRWXO)"' \
     CFLAGS='-fpermissive -D"u_int64_t=uint64_t" -D"ACCESSPERMS=(S_IRWXU|S_IRWXG|S_IRWXO)"' \
-    cmake -DNO_IPO=ON .. && \
+    cmake -DNO_IPO=ON -DCURL_LIBRARY=/usr/lib/libcurl.so -DIconv_IS_BUILT_IN=TRUE .. && \
     make -j${BUILD_NCPU}
 RUN strip /usr/local/lib/libtbb*.so.* src/salmon
 
