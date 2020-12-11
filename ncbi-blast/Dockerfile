@@ -26,8 +26,8 @@ RUN mkdir /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib
 COPY libs.txt /build/libs.txt
 COPY execs.txt /build/execs.txt
 
+RUN cp /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/lib/*.so /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib
 RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/bin/${l} /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin; done < /build/execs.txt
-RUN while read l; do cp /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/lib/${l} /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib; done < /build/libs.txt
 
 RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin/*
 RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so
@@ -37,16 +37,16 @@ FROM alpine:${ALPINE_VERSION}
 
 ARG BLAST_VERSION=2.10.1
 
-WORKDIR / 
+WORKDIR /
 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories  
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 
 RUN apk add --no-cache bash
 RUN apk add --no-cache libc6-compat libexecinfo libgcc libstdc++
 
 COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finalbin/*  /usr/local/bin/
-COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so /usr/local/lib/  
+COPY --from=alpine-build-blast /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so /usr/local/lib/
 
 ENTRYPOINT ["/usr/local/bin/blastn"]
 
