@@ -4,7 +4,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-blast
 
 ARG ALPINE_VERSION=3.12
-ARG BLAST_VERSION=2.10.1
+ARG BLAST_VERSION=2.11.0
 ARG BUILD_NCPU=1
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
@@ -35,7 +35,7 @@ RUN strip /build/ncbi-blast-${BLAST_VERSION}+-src/c++/ReleaseMT/finallib/*.so
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG BLAST_VERSION=2.10.1
+ARG BLAST_VERSION=2.11.0
 
 WORKDIR /
 
