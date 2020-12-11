@@ -5,7 +5,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.12
-ARG DIAMOND_VERSION=2.0.4
+ARG DIAMOND_VERSION=2.0.5
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev cmake
@@ -27,7 +27,7 @@ RUN strip diamond
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG DIAMOND_VERSION=2.0.4
+ARG DIAMOND_VERSION=2.0.5
 
 RUN apk add --no-cache bash
 
