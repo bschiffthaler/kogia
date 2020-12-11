@@ -1,0 +1,14 @@
+--- salmon-1.4.0_new/CMakeLists.txt
++++ salmon-1.4.0/CMakeLists.txt
+@@ -345,11 +345,6 @@
+   set(EXTRA_CMAKE_LIBRARY_FLAGS "-L${CMAKE_LIBRARY_PATH}")
+ endif()
+
+-find_package(Iconv REQUIRED)
+-if(NOT Iconv_IS_BUILT_IN)
+-  set(ICONV_LIB Iconv::Iconv)
+-endif()
+-
+ find_package(LibLZMA)
+ if(NOT LIBLZMA_FOUND)
+   message("Will attempt to fetch and build liblzma")
