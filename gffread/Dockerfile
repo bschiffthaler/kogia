@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-gffread
 
 ARG ALPINE_VERSION=3.12
-ARG GFFR_VERSION=0.12.3
+ARG GFFR_VERSION=0.12.4
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base make
@@ -19,7 +19,7 @@ RUN strip gffread
 ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION}
 
-ARG GFFR_VERSION=0.12.3
+ARG GFFR_VERSION=0.12.4
 
 WORKDIR /
 RUN apk add --no-cache bash
