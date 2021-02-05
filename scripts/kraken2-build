@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_KRAKEN2-BUILD_TAG ]]
+then
+  gen_docker bschiffthaler/kraken2-build:$KOGIA_KRAKEN2-BUILD_TAG $@
+else
+  gen_docker bschiffthaler/kraken2-build:latest $@
+fi
