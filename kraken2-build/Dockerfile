@@ -20,7 +20,7 @@ ARG KRAKEN2_VERSION=2.1.1
 
 WORKDIR /
 RUN apk add --no-cache bash
-RUN apk add --no-cache perl
+RUN apk add --no-cache perl libstdc++ libgcc libgomp
 COPY --from=alpine-build-kraken2 /usr/local/kraken2 /usr/local/kraken2
 RUN mv /usr/local/kraken2/kraken2-build /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/kraken2-build"]
