@@ -2,7 +2,7 @@
 source $(dirname $0)/generic_wrapper.sh
 if [[ -v KOGIA_KRAKEN2_TAG ]]
 then
-  gen_docker bschiffthaler/kraken2-build:$KOGIA_KRAKEN2_TAG $@
+  gen_docker bschiffthaler/kraken2:$KOGIA_KRAKEN2_TAG $@
 else
-  gen_docker bschiffthaler/kraken2-build:latest $@
+  gen_docker bschiffthaler/kraken2:latest $@
 fi
