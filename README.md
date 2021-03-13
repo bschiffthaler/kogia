@@ -31,7 +31,6 @@ Currently we have builds for:
 ### Assembly Evaluation
 
 - [bschiffthaler/gffcompare](https://hub.docker.com/repository/docker/bschiffthaler/gffcompare)
-- [bschiffthaler/trmap](https://hub.docker.com/repository/docker/bschiffthaler/trmap)
 - [bschiffthaler/transrate](https://hub.docker.com/repository/docker/bschiffthaler/transrate)
 
 ### Data Retrieval
