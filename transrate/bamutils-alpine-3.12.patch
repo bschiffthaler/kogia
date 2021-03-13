@@ -1,0 +1,10 @@
+--- BAMUtils.hpp
++++ BAMUtils.hpp
+@@ -1,6 +1,6 @@
+ #ifndef __SALMON_BAM_UTILS__
+ #define __SALMON_BAM_UTILS__
+-
++#include <string>
+ extern "C" {
+ #include "io_lib/os.h"
+ #include "io_lib/scram.h"

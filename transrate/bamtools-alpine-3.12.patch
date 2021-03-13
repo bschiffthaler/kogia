@@ -1,0 +1,47 @@
+--- bamtools_resolve.cpp
++++ bamtools_resolve.cpp
+@@ -412,7 +412,7 @@
+         ReadGroupResolver& resolver = (*rgIter).second;
+
+         // store read name with resolver
+-        resolver.ReadNames.insert( make_pair<string,bool>(fields[1], true) ) ;
++        resolver.ReadNames.insert( {fields[1], true} ) ;
+     }
+
+     // if here, return success
+@@ -609,7 +609,7 @@
+     resolver.IsAmbiguous = ( fields.at(6) == TRUE_KEYWORD );
+
+     // store RG entry and return success
+-    readGroups.insert( make_pair<string, ReadGroupResolver>(name, resolver) );
++    readGroups.insert( {name, resolver} );
+     return true;
+ }
+
+@@ -1016,7 +1016,7 @@
+         }
+
+         // if read name not found, store new entry
+-        else resolver.ReadNames.insert( make_pair<string, bool>(al.Name, isCurrentMateUnique) );
++        else resolver.ReadNames.insert( {al.Name, isCurrentMateUnique} );
+     }
+
+     // close files
+@@ -1048,7 +1048,7 @@
+     SamReadGroupConstIterator rgEnd  = header.ReadGroups.ConstEnd();
+     for ( ; rgIter != rgEnd; ++rgIter ) {
+         const SamReadGroup& rg = (*rgIter);
+-        m_readGroups.insert( make_pair<string, ReadGroupResolver>(rg.ID, ReadGroupResolver()) );
++        m_readGroups.insert( {rg.ID, ReadGroupResolver()} );
+     }
+ }
+
+@@ -1205,7 +1205,7 @@
+     }
+
+     // initialize read group map with default (empty name) read group
+-    m_readGroups.insert( make_pair<string, ReadGroupResolver>("", ReadGroupResolver()) );
++    m_readGroups.insert( {"", ReadGroupResolver()} );
+
+     // init readname filename
+     // uses (adjusted) stats filename if provided (req'd for makeStats, markPairs modes; optional for twoPass)
