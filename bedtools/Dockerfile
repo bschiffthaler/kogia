@@ -1,11 +1,12 @@
 ARG ALPINE_VERSION=3.12
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-bedtools
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+
+#RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
+#RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.12
-ARG BEDTOOLS_VERSION=2.29.2
+ARG BEDTOOLS_VERSION=2.30.0
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -25,7 +26,7 @@ RUN strip bin/bedtools
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG BEDTOOLS_VERSION=2.29.2
+ARG BEDTOOLS_VERSION=2.30.0
 
 RUN apk add --no-cache bash
 
