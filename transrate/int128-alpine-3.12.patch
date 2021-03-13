@@ -1,0 +1,12 @@
+--- int128.hpp
++++ int128.hpp
+@@ -16,6 +16,9 @@
+
+ #ifndef _INT128_H_
+ #define _INT128_H_
++#endif
++
++#ifdef _____IGNORE______
+
+ //#ifdef HAVE_CONFIG_H
+ //#include <config.h>
