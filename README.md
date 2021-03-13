@@ -32,6 +32,7 @@ Currently we have builds for:
 
 - [bschiffthaler/gffcompare](https://hub.docker.com/repository/docker/bschiffthaler/gffcompare)
 - [bschiffthaler/trmap](https://hub.docker.com/repository/docker/bschiffthaler/trmap)
+- [bschiffthaler/transrate](https://hub.docker.com/repository/docker/bschiffthaler/transrate)
 
 ### Data Retrieval
 
@@ -68,6 +69,7 @@ Currently we have builds for:
 - [bschiffthaler/sortmerna](https://hub.docker.com/repository/docker/bschiffthaler/sortmerna)
 - [bschiffthaler/trim-galore](https://hub.docker.com/repository/docker/bschiffthaler/trim-galore)
 - [bschiffthaler/trimmomatic](https://hub.docker.com/repository/docker/bschiffthaler/trimmomatic)
+- [bschiffthaler/kraken2](https://hub.docker.com/repository/docker/bschiffthaler/kraken2)
 
 ### Toolboxes
 
