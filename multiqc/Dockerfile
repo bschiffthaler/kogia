@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-multiqc
 
 ARG ALPINE_VERSION=3.12
-ARG MULTIQC_VERSION=1.9
+ARG MULTIQC_VERSION=1.10
 ARG PYTHON_VERSION=3.8
 
 RUN apk update && apk add python3 build-base zlib-dev libpng-dev freetype-dev \
@@ -114,7 +114,7 @@ RUN pyinstaller --additional-hooks-dir . --onefile \
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG MULTIQC_VERSION=1.9
+ARG MULTIQC_VERSION=1.10
 
 RUN apk add --no-cache bash
 
