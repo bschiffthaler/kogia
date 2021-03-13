@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-gffcompare
 
 ARG ALPINE_VERSION=3.12
-ARG GFFC_VERSION=0.12.1
+ARG GFFC_VERSION=0.12.2
 ARG BUILD_NCPU=1
 
 WORKDIR /build
@@ -17,7 +17,7 @@ RUN strip trmap
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG GFFC_VERSION=0.12.1
+ARG GFFC_VERSION=0.12.2
 
 WORKDIR /
 RUN apk add --no-cache bash
