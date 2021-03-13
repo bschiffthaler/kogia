@@ -23,6 +23,8 @@ RUN apk add --no-cache bash
 RUN apk add perl libstdc++ libgcc libgomp
 COPY --from=alpine-build-kraken2 /usr/local/kraken2 /usr/local/kraken2
 RUN mv /usr/local/kraken2/kraken2 /usr/local/bin/
+RUN mv /usr/local/kraken2/kraken2-build /usr/local/bin/
+
 ENTRYPOINT ["/usr/local/bin/kraken2"]
 
 LABEL maintainer='github.com/nicolasDelhomme'
