@@ -1,11 +1,9 @@
 ARG ALPINE_VERSION=3.12
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-samtools
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.12
-ARG SAMTOOLS_VERSION=1.11
+ARG SAMTOOLS_VERSION=1.12
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -22,7 +20,7 @@ RUN strip samtools
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG SAMTOOLS_VERSION=1.11
+ARG SAMTOOLS_VERSION=1.12
 
 RUN apk add --no-cache bash
 RUN apk add --no-cache libbz2 zlib libcurl xz-libs
