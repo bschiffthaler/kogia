@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-sortmerna
 
 ARG ALPINE_VERSION=3.12
-ARG SORTMERNA_VERSION=4.2.0
+ARG SORTMERNA_VERSION=4.3.2
 
 WORKDIR /build
 RUN apk update && apk add curl bash build-base
@@ -15,7 +15,7 @@ RUN strip /build/bin/sortmerna
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG SORTMERNA_VERSION=4.2.0
+ARG SORTMERNA_VERSION=4.3.2
 
 WORKDIR / 
 RUN apk add --no-cache bash
