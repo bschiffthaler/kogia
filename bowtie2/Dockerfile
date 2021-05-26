@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-bowtie
 
 ARG ALPINE_VERSION=3.12
-ARG BOWTIE_VERSION=2.4.3
+ARG BOWTIE_VERSION=2.4.4
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev zlib-static
@@ -16,7 +16,7 @@ RUN strip *-l *-s
 
 FROM alpine:${ALPINE_VERSION} 
 
-ARG BOWTIE_VERSION=2.4.3
+ARG BOWTIE_VERSION=2.4.4
 
 WORKDIR / 
 RUN apk add --no-cache bash
