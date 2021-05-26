@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-stringtie
 
 ARG ALPINE_VERSION=3.12
-ARG ST_VERSION=2.1.4
+ARG ST_VERSION=2.1.5
 ARG BUILD_NCPU=1
 
 WORKDIR /build
@@ -17,7 +17,7 @@ RUN strip stringtie
 # Final exec image
 ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION}
-ARG ST_VERSION=2.1.4
+ARG ST_VERSION=2.1.5
 
 WORKDIR /
 RUN apk add --no-cache bash

@@ -1,11 +1,9 @@
 ARG ALPINE_VERSION=3.12
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-flye
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
 ARG ALPINE_VERSION=3.12
-ARG FLYE_VERSION=2.8.2
+ARG FLYE_VERSION=2.8.3
 
 RUN apk update && apk add build-base zlib-dev libexecinfo-dev \
     bzip2-dev xz-dev python3 py3-setuptools
@@ -20,7 +18,7 @@ RUN strip bin/flye-*
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG FLYE_VERSION=2.8.2
+ARG FLYE_VERSION=2.8.3
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories

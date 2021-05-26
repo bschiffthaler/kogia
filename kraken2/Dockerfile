@@ -20,7 +20,7 @@ ARG KRAKEN2_VERSION=2.1.2
 
 WORKDIR /
 RUN apk add --no-cache bash
-RUN apk add perl libstdc++ libgcc libgomp
+RUN apk add perl libstdc++ libgcc libgomp rsync
 COPY --from=alpine-build-kraken2 /usr/local/kraken2 /usr/local/kraken2
 RUN mv /usr/local/kraken2/kraken2 /usr/local/bin/
 RUN mv /usr/local/kraken2/kraken2-build /usr/local/bin/
