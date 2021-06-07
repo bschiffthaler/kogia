@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-stringtie
 
-ARG ALPINE_VERSION=3.12
-ARG ST_VERSION=2.1.5
+ARG ALPINE_VERSION=3.13
+ARG ST_VERSION=2.1.6
 ARG BUILD_NCPU=1
 
 WORKDIR /build
@@ -15,9 +15,9 @@ RUN CXXFLAGS='-include /usr/include/c++/**/cstdint' make -j${BUILD_NCPU} clean r
 RUN strip stringtie
 
 # Final exec image
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 FROM alpine:${ALPINE_VERSION}
-ARG ST_VERSION=2.1.5
+ARG ST_VERSION=2.1.6
 
 WORKDIR /
 RUN apk add --no-cache bash
