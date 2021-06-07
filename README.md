@@ -11,6 +11,7 @@ Currently we have builds for:
 ### Alignment
 
 - [bschiffthaler/bowtie](https://hub.docker.com/repository/docker/bschiffthaler/bowtie)
+- [bschiffthaler/bowtie2](https://hub.docker.com/repository/docker/bschiffthaler/bowtie2)
 - [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
@@ -64,6 +65,7 @@ Currently we have builds for:
 
 - [bschiffthaler/cutadapt](https://hub.docker.com/repository/docker/bschiffthaler/cutadapt)
 - [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
+- [bschiffthaler/fastq_screen](https://hub.docker.com/repository/docker/bschiffthaler/fastq_screen)
 - [bschiffthaler/multiqc](https://hub.docker.com/repository/docker/bschiffthaler/multiqc)
 - [bschiffthaler/sortmerna](https://hub.docker.com/repository/docker/bschiffthaler/sortmerna)
 - [bschiffthaler/trim-galore](https://hub.docker.com/repository/docker/bschiffthaler/trim-galore)
