@@ -1,8 +1,8 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-flye
 
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 ARG FLYE_VERSION=2.8.3
 
 RUN apk update && apk add build-base zlib-dev libexecinfo-dev \
@@ -20,8 +20,6 @@ FROM alpine:${ALPINE_VERSION}
 
 ARG FLYE_VERSION=2.8.3
 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN apk add --no-cache bash
 RUN apk add --no-cache python3 libgcc libstdc++ libexecinfo
 
