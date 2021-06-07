@@ -14,6 +14,7 @@ Currently we have builds for:
 - [bschiffthaler/bowtie2](https://hub.docker.com/repository/docker/bschiffthaler/bowtie2)
 - [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
+- [bschiffthaler/gmap](https://hub.docker.com/repository/docker/bschiffthaler/gmap)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
 - [bschiffthaler/ncbi-blast](https://hub.docker.com/repository/docker/bschiffthaler/ncbi-blast)
 - [bschiffthaler/star](https://hub.docker.com/repository/docker/bschiffthaler/star)
@@ -63,6 +64,7 @@ Currently we have builds for:
 
 ### QC/Read preprocessing
 
+- [bschiffthaler/demultiplex](https://hub.docker.com/repository/docker/bschiffthaler/demultiplex)
 - [bschiffthaler/cutadapt](https://hub.docker.com/repository/docker/bschiffthaler/cutadapt)
 - [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
 - [bschiffthaler/fastq_screen](https://hub.docker.com/repository/docker/bschiffthaler/fastq_screen)
