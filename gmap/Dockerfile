@@ -13,9 +13,9 @@ WORKDIR /build
 RUN wget http://research-pub.gene.com/gmap/src/gmap-gsnap-${GMAP_VERSION}.tar.gz
 RUN tar -xf gmap-gsnap-${GMAP_VERSION}.tar.gz
 WORKDIR /build/gmap-${GMAP_VERSION}/
-RUN ./configure --prefix=/build/dist
+RUN ./configure --prefix=/usr/local
 RUN make -j${BUILD_NCPU} && make install
-WORKDIR /build/dist/bin
+WORKDIR /usr/local/bin
 RUN for f in *; \
     do \
       x=$(file $f) ;\
@@ -32,7 +32,7 @@ RUN apk add --no-cache bash
 RUN apk add --no-cache libbz2 perl
 
 WORKDIR / 
-COPY --from=alpine-build-gmap /build/dist/bin/* /usr/local/bin/
+COPY --from=alpine-build-gmap /usr/local/bin/* /usr/local/bin/
 
 ENTRYPOINT ["/usr/local/bin/gmap"]
 
