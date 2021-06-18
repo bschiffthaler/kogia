@@ -1,0 +1,32 @@
+ARG ALPINE_VERSION=3.12
+
+# Build image
+FROM alpine:${ALPINE_VERSION} AS alpine-build-blast
+
+ARG ALPINE_VERSION=3.12
+ARG BLAST_VERSION=2.2.13
+ARG BUILD_NCPU=1
+
+WORKDIR /build
+RUN apk update && apk add build-base tcsh
+RUN wget https://ftp.ncbi.nlm.nih.gov/blast/executables/legacy.NOTSUPPORTED/${BLAST_VERSION}/ncbi.tar.gz
+RUN tar -xvf ncbi.tar.gz
+RUN tcsh ncbi/make/makedis.csh
+RUN find ncbi -type f -executable -not -name "*.*" -exec cp {} /usr/local/bin \;
+
+
+# Final exec image
+FROM alpine:${ALPINE_VERSION}
+
+ARG BLAST_VERSION=2.2.13
+
+WORKDIR /
+
+RUN apk add --no-cache bash
+
+COPY --from=alpine-build-blast /usr/local/bin/*  /usr/local/bin/
+
+ENTRYPOINT ["/usr/local/bin/blastall"]
+
+LABEL maintainer='github.com/bschiffthaler'
+LABEL software.version=${BLAST_VERSION}
