@@ -34,6 +34,7 @@ COPY --from=alpine-build-ppipe /build/pgenes/ppipe_input /var/share/ppipe_input
 COPY --from=alpine-build-ppipe /build/pgenes/ppipe_output /var/share/ppipe_output
 
 ENV BLASTMAT=/var/share/ncbi/data
+ENV PATH=/usr/local/bin/pseudopipe/bin:$PATH
 
 ENTRYPOINT ["/usr/local/bin/pseudopipe/bin/pseudopipe.sh"]
 
