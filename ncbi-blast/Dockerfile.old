@@ -25,6 +25,9 @@ WORKDIR /
 RUN apk add --no-cache bash
 
 COPY --from=alpine-build-blast /usr/local/bin/*  /usr/local/bin/
+COPY --from=alpine-build-blast /build/ncbi/data  /var/share/ncbi/data
+
+ENV BLASTMAT=/var/share/ncbi/data
 
 ENTRYPOINT ["/usr/local/bin/blastall"]
 
