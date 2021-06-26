@@ -46,6 +46,7 @@ Currently we have builds for:
 ### Linux Pipeliners
 
 - [bschiffthaler/awk](https://hub.docker.com/repository/docker/bschiffthaler/awk)
+- [bschiffthaler/bioawk](https://hub.docker.com/repository/docker/bschiffthaler/bioawk)
 - [bschiffthaler/curl](https://hub.docker.com/repository/docker/bschiffthaler/curl)
 - [bschiffthaler/sed](https://hub.docker.com/repository/docker/bschiffthaler/sed)
 
@@ -61,6 +62,10 @@ Currently we have builds for:
 
 - [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)
 - [bschiffthaler/salmon](https://hub.docker.com/repository/docker/bschiffthaler/salmon)
+
+### Pseudogene detection
+
+- [bschiffthaler/pseudopipe](https://hub.docker.com/repository/docker/bschiffthaler/pseudopipe)
 
 ### QC/Read preprocessing
 
