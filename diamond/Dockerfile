@@ -13,6 +13,9 @@ WORKDIR /build
 RUN wget https://github.com/bbuchfink/diamond/archive/v${DIAMOND_VERSION}.tar.gz
 
 RUN tar -xf v${DIAMOND_VERSION}.tar.gz
+RUN cp -r /build/diamond-${DIAMOND_VERSION} /build/diamond-${DIAMOND_VERSION}_old
+COPY diamond-${DIAMOND_VERSION}-alpine-${ALPINE_VERSION}.patch /build/
+RUN patch -p0 < diamond-${DIAMOND_VERSION}-alpine-${ALPINE_VERSION}.patch
 
 WORKDIR /build/diamond-${DIAMOND_VERSION}/build
 

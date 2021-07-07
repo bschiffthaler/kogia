@@ -1,0 +1,11 @@
+--- diamond-2.0.11_old/src/util/system/system.cpp
++++ diamond-2.0.11/src/util/system/system.cpp
+@@ -192,7 +192,7 @@
+ }
+ 
+ size_t l3_cache_size() {
+-#if defined(_MSC_VER) || defined(__APPLE__)
++#if defined(_MSC_VER) || defined(__APPLE__) || (! defined(_SC_LEVEL3_CACHE_SIZE))
+ 	return 0;
+ #else
+ 	const auto s = sysconf(_SC_LEVEL3_CACHE_SIZE);
