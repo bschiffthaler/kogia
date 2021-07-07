@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-diamond
 
-ARG ALPINE_VERSION=3.12
-ARG DIAMOND_VERSION=2.0.8
+ARG ALPINE_VERSION=3.13
+ARG DIAMOND_VERSION=2.0.11
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev cmake
@@ -13,6 +13,9 @@ WORKDIR /build
 RUN wget https://github.com/bbuchfink/diamond/archive/v${DIAMOND_VERSION}.tar.gz
 
 RUN tar -xf v${DIAMOND_VERSION}.tar.gz
+RUN cp -r /build/diamond-${DIAMOND_VERSION} /build/diamond-${DIAMOND_VERSION}_old
+COPY diamond-${DIAMOND_VERSION}-alpine-${ALPINE_VERSION}.patch /build/
+RUN patch -p0 < diamond-${DIAMOND_VERSION}-alpine-${ALPINE_VERSION}.patch
 
 WORKDIR /build/diamond-${DIAMOND_VERSION}/build
 
@@ -25,7 +28,7 @@ RUN strip diamond
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG DIAMOND_VERSION=2.0.8
+ARG DIAMOND_VERSION=2.0.11
 
 RUN apk add --no-cache bash
 
