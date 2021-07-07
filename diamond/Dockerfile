@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-diamond
 
-ARG ALPINE_VERSION=3.12
-ARG DIAMOND_VERSION=2.0.8
+ARG ALPINE_VERSION=3.13
+ARG DIAMOND_VERSION=2.0.11
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev cmake
@@ -25,7 +25,7 @@ RUN strip diamond
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG DIAMOND_VERSION=2.0.8
+ARG DIAMOND_VERSION=2.0.11
 
 RUN apk add --no-cache bash
 
