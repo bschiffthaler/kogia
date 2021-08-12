@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-gffread
 
-ARG ALPINE_VERSION=3.12
-ARG GFFR_VERSION=0.12.6
+ARG ALPINE_VERSION=3.13
+ARG GFFR_VERSION=0.12.7
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base make
@@ -16,10 +16,10 @@ RUN make -j${BUILD_NCPU} release
 RUN strip gffread
 
 # Final exec image
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 FROM alpine:${ALPINE_VERSION}
 
-ARG GFFR_VERSION=0.12.6
+ARG GFFR_VERSION=0.12.7
 
 WORKDIR /
 RUN apk add --no-cache bash
