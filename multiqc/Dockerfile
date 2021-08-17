@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-multiqc
 
-ARG ALPINE_VERSION=3.12
-ARG MULTIQC_VERSION=1.10
+ARG ALPINE_VERSION=3.13
+ARG MULTIQC_VERSION=1.11
 ARG PYTHON_VERSION=3.8
 
 RUN apk update && apk add python3 build-base zlib-dev libpng-dev freetype-dev \
@@ -57,8 +57,8 @@ RUN echo "datas = copy_metadata('colormath')" >> hook-colormath.py
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" > hook-kiwisolver.py
 RUN echo "datas = copy_metadata('kiwisolver')" >> hook-kiwisolver.py
 
-RUN echo "from PyInstaller.utils.hooks import copy_metadata" > hook-six.py
-RUN echo "datas = copy_metadata('six')" >> hook-six.py
+# RUN echo "from PyInstaller.utils.hooks import copy_metadata" > hook-six.py
+# RUN echo "datas = copy_metadata('six')" >> hook-six.py
 
 RUN echo "from PyInstaller.utils.hooks import copy_metadata" > hook-dateutil.py
 RUN echo "datas = copy_metadata('python-dateutil')" >> hook-dateutil.py
