@@ -3,13 +3,13 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-genometools
 
 ARG ALPINE_VERSION=3.12
-ARG GT_VERSION=1.6.1
+ARG GT_VERSION=1.6.2
 ARG BUILD_NCPU=1
 
 WORKDIR /build
 RUN apk update && apk add build-base make
-RUN wget http://genometools.org/pub/genometools-${GT_VERSION}.tar.gz
-RUN tar -zxf genometools-${GT_VERSION}.tar.gz
+RUN wget https://github.com/genometools/genometools/archive/refs/tags/v${GT_VERSION}.tar.gz
+RUN tar -zxf v${GT_VERSION}.tar.gz
 WORKDIR /build/genometools-${GT_VERSION}
 RUN make cairo=no -j${BUILD_NCPU}
 RUN strip bin/gt
@@ -17,7 +17,7 @@ RUN strip bin/gt
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG GT_VERSION=1.6.1
+ARG GT_VERSION=1.6.2
 
 WORKDIR /
 RUN apk add --no-cache bash
