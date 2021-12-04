@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.13
 FROM alpine:${ALPINE_VERSION} AS alpine-build-minimap2
 
 ARG ALPINE_VERSION=3.13
-ARG MINIMAP2_VERSION=2.22
+ARG MINIMAP2_VERSION=2.23
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev zlib-static
@@ -18,7 +18,7 @@ RUN strip minimap2
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG MINIMAP2_VERSION=2.22
+ARG MINIMAP2_VERSION=2.23
 
 WORKDIR / 
 RUN apk add --no-cache bash
