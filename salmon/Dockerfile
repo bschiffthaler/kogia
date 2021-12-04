@@ -4,7 +4,7 @@ FROM alpine:${ALPINE_VERSION} AS alpine-build-salmon
 
 ARG ALPINE_VERSION=3.13
 ARG TBB_VERSION=2020.2
-ARG SALMON_VERSION=1.5.2
+ARG SALMON_VERSION=1.6.0
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-static zlib-dev bzip2-static \
@@ -47,7 +47,7 @@ RUN strip /usr/local/lib/libtbb*.so.* src/salmon
 FROM alpine:${ALPINE_VERSION}
 
 ARG TBB_VERSION=2020.2
-ARG SALMON_VERSION=1.5.2
+ARG SALMON_VERSION=1.6.0
 
 WORKDIR / 
 RUN apk add --no-cache bash
