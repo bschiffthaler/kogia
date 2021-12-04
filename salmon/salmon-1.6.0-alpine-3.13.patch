@@ -1,0 +1,22 @@
+--- salmon-1.6.0_new/CMakeLists.txt
++++ salmon-1.6.0/CMakeLists.txt
+@@ -345,11 +345,6 @@
+   set(EXTRA_CMAKE_LIBRARY_FLAGS "-L${CMAKE_LIBRARY_PATH}")
+ endif()
+
+-find_package(Iconv REQUIRED)
+-if(NOT Iconv_IS_BUILT_IN)
+-  set(ICONV_LIB Iconv::Iconv)
+-endif()
+-
+ find_package(LibLZMA)
+ if(NOT LIBLZMA_FOUND)
+   message("Will attempt to fetch and build liblzma")
+--- salmon-1.6.0_new/src/CMakeLists.txt
++++ salmon-1.6.0/src/CMakeLists.txt
+@@ -399,3 +399,5 @@
+
+ # Remove this test since we are removing support for the FMD index.
+ # add_test( NAME salmon_read_test_fmd COMMAND ${CMAKE_COMMAND} -DTOPLEVEL_DIR=${GAT_SOURCE_DIR} -P ${GAT_SOURCE_DIR}/cmake/TestSalmonFMD.cmake )
++
++ target_link_libraries(salmon execinfo)
