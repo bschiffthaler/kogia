@@ -1,12 +1,12 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-bowtie
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.12
-ARG BOWTIE_VERSION=1.3.0
+ARG ALPINE_VERSION=3.13
+ARG BOWTIE_VERSION=1.3.1
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev zlib-static
@@ -20,7 +20,7 @@ RUN strip *-l *-s
 
 FROM alpine:${ALPINE_VERSION} 
 
-ARG BOWTIE_VERSION=1.3.0
+ARG BOWTIE_VERSION=1.3.1
 
 WORKDIR / 
 RUN apk add --no-cache bash
