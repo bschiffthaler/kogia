@@ -1,2 +1,5 @@
 build.sh
 build.log
+**/__pycache__/**
+**/*.py.data/**
+**/prog/**
