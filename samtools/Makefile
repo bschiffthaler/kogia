@@ -42,7 +42,7 @@ prog/.git.commits: prog/.docker.tags
 	git commit -m "Bump ${EXEC}->${VERSION}"
 	git tag ${EXEC}/${VERSION}
 	git checkout main
-	git merge ${EXEC}
+	git merge -m "Merge branch ${EXEC} into main" ${EXEC}
 	touch prog/.git.commits
 
 release: prog/.git.commits
