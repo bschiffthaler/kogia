@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_STAR_TAG ]]
+then
+  gen_docker bschiffthaler/star:KOGIA_STAR_TAG $@
+else
+  gen_docker bschiffthaler/star:latest $@
+fi
