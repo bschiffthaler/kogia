@@ -1,2 +1,4 @@
 build.sh
 build.log
+.Rproj.user
+*.Rproj
