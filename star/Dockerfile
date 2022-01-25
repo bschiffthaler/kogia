@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION} AS alpine-build-star
 
 ARG ALPINE_VERSION=3.12
-ARG STAR_VERSION=2.7.9a
+ARG STAR_VERSION=2.7.10a
 
 WORKDIR /build
 RUN apk update && apk add build-base wget zlib-dev tar zlib-static
@@ -14,9 +14,9 @@ RUN strip /build/STAR-${STAR_VERSION}/bin/Linux_x86_64_static/*
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG STAR_VERSION=2.7.9a
+ARG STAR_VERSION=2.7.10a
 
-WORKDIR / 
+WORKDIR /
 RUN apk add --no-cache bash
 COPY --from=alpine-build-star /build/STAR-${STAR_VERSION}/bin/Linux_x86_64_static/* /usr/local/bin/
 
