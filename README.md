@@ -14,6 +14,7 @@ Currently we have builds for:
 - [bschiffthaler/bowtie2](https://hub.docker.com/repository/docker/bschiffthaler/bowtie2)
 - [bschiffthaler/bwa](https://hub.docker.com/repository/docker/bschiffthaler/bwa)
 - [bschiffthaler/diamond](https://hub.docker.com/repository/docker/bschiffthaler/diamond)
+- [bschiffthaler/gmap](https://hub.docker.com/repository/docker/bschiffthaler/gmap)
 - [bschiffthaler/minimap2](https://hub.docker.com/repository/docker/bschiffthaler/minimap2)
 - [bschiffthaler/ncbi-blast](https://hub.docker.com/repository/docker/bschiffthaler/ncbi-blast)
 - [bschiffthaler/star](https://hub.docker.com/repository/docker/bschiffthaler/star)
@@ -45,6 +46,7 @@ Currently we have builds for:
 ### Linux Pipeliners
 
 - [bschiffthaler/awk](https://hub.docker.com/repository/docker/bschiffthaler/awk)
+- [bschiffthaler/bioawk](https://hub.docker.com/repository/docker/bschiffthaler/bioawk)
 - [bschiffthaler/curl](https://hub.docker.com/repository/docker/bschiffthaler/curl)
 - [bschiffthaler/sed](https://hub.docker.com/repository/docker/bschiffthaler/sed)
 
@@ -61,8 +63,13 @@ Currently we have builds for:
 - [bschiffthaler/kallisto](https://hub.docker.com/repository/docker/bschiffthaler/kallisto)
 - [bschiffthaler/salmon](https://hub.docker.com/repository/docker/bschiffthaler/salmon)
 
+### Pseudogene detection
+
+- [bschiffthaler/pseudopipe](https://hub.docker.com/repository/docker/bschiffthaler/pseudopipe)
+
 ### QC/Read preprocessing
 
+- [bschiffthaler/demultiplex](https://hub.docker.com/repository/docker/bschiffthaler/demultiplex)
 - [bschiffthaler/cutadapt](https://hub.docker.com/repository/docker/bschiffthaler/cutadapt)
 - [bschiffthaler/fastqc](https://hub.docker.com/repository/docker/bschiffthaler/fastqc)
 - [bschiffthaler/fastq_screen](https://hub.docker.com/repository/docker/bschiffthaler/fastq_screen)
