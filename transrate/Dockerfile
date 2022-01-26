@@ -11,6 +11,7 @@ RUN apk update &&\
     g++ build-base
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN apk update &&\
     apk add libtbb-dev
 
@@ -59,6 +60,7 @@ FROM alpine:${ALPINE_VERSION}
 
 RUN apk add --no-cache ruby libc6-compat libexecinfo libgcc libstdc++
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN apk add --no-cache libtbb libgomp
 
 COPY --from=alpine-build-transrate /build/salmon-0.13.1/build/src/salmon /usr/local/bin/salmon
