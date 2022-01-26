@@ -1,10 +1,10 @@
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-trimmomatic
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.12
+ARG ALPINE_VERSION=3.13
 ARG TRIMMOMATIC_VERSION=0.39
 
 RUN apk update && apk add wget unzip
