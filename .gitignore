@@ -2,3 +2,6 @@ build.sh
 build.log
 .Rproj.user
 *.Rproj
+**/__pycache__/**
+**/*.py.data/**
+**/prog/**
