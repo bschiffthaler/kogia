@@ -142,6 +142,10 @@ RUN echo "from PyInstaller.utils.hooks import collect_submodules" >> \
 RUN echo "hiddenimports += collect_submodules('packaging')" >> \
     /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-packaging.py
 
+RUN echo "from PyInstaller.utils.hooks import copy_metadata" >> \
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-zipp.py
+RUN echo "datas = copy_metadata('zipp')" >> \
+    /usr/lib/python${PYTHON_VERSION}/site-packages/PyInstaller/hooks/hook-zipp.py
 
 RUN pyinstaller --additional-hooks-dir . --onefile \
     --add-data /usr/lib/python${PYTHON_VERSION}/site-packages/multiqc:multiqc \
@@ -168,7 +172,7 @@ ARG MULTIQC_VERSION=1.11
 
 RUN apk add --no-cache bash
 
-WORKDIR / 
+WORKDIR /
 COPY --from=alpine-build-multiqc /build/dist/multiqc /usr/local/bin/multiqc
 ENTRYPOINT ["/usr/local/bin/multiqc"]
 
