@@ -1,11 +1,11 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.14
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-bowtie
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.14
 ARG BOWTIE_VERSION=1.3.1
 ARG BUILD_NCPU=1
 
