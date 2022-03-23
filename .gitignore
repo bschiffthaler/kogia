@@ -3,3 +3,5 @@ build.log
 **/__pycache__/**
 **/*.py.data/**
 **/prog/**
+.Rproj.user
+*.Rproj

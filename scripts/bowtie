@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source $(dirname $0)/generic_wrapper.sh
+if [[ -v KOGIA_BOWTIE_TAG ]]
+then
+  gen_docker bschiffthaler/bowtie:$KOGIA_BOWTIE_TAG $@
+else
+  gen_docker bschiffthaler/bowtie:latest $@
+fi
