@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.14
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-stringtie
 
-ARG ALPINE_VERSION=3.13
-ARG ST_VERSION=2.2.0
+ARG ALPINE_VERSION=3.14
+ARG ST_VERSION=2.2.1
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base git zlib-dev wget python3-dev py3-pip py3-wheel \
@@ -26,9 +26,9 @@ RUN strip stringtie
 
 
 # Final exec image
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.14
 FROM alpine:${ALPINE_VERSION}
-ARG ST_VERSION=2.2.0
+ARG ST_VERSION=2.2.1
 
 WORKDIR /
 RUN apk add --no-cache bash

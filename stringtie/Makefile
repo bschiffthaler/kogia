@@ -1,6 +1,6 @@
-ALPINE=3.13
+ALPINE=3.14
 EXEC=stringtie
-VERSION=2.2.0
+VERSION=2.2.1
 SOURCES=Dockerfile Makefile test.py
 
 all: release
