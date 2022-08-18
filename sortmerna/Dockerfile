@@ -3,7 +3,7 @@ ARG ALPINE_VERSION=3.13
 FROM alpine:${ALPINE_VERSION} AS alpine-build-sortmerna
 
 ARG ALPINE_VERSION=3.13
-ARG SORTMERNA_VERSION=4.3.4
+ARG SORTMERNA_VERSION=4.3.6
 
 WORKDIR /build
 RUN apk update && apk add curl bash build-base
@@ -15,9 +15,9 @@ RUN strip /build/bin/sortmerna
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG SORTMERNA_VERSION=4.3.4
+ARG SORTMERNA_VERSION=4.3.6
 
-WORKDIR / 
+WORKDIR /
 RUN apk add --no-cache bash
 COPY --from=alpine-build-sortmerna /build/bin/sortmerna /usr/local/bin/sortmerna
 ENTRYPOINT ["/usr/local/bin/sortmerna"]
