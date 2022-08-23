@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.14
+ARG ALPINE_VERSION=3.13
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-tabix
 
-ARG ALPINE_VERSION=3.14
-ARG HTSLIB_VERSION=1.15
+ARG ALPINE_VERSION=3.13
+ARG HTSLIB_VERSION=1.16
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -20,9 +20,9 @@ RUN strip tabix bgzip htsfile
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG HTSLIB_VERSION=1.15
+ARG HTSLIB_VERSION=1.16
 
-WORKDIR / 
+WORKDIR /
 RUN apk add --no-cache bash
 RUN apk add --no-cache libbz2 zlib libcurl xz-libs
 COPY --from=alpine-build-tabix /build/htslib-${HTSLIB_VERSION}/libhts.so /usr/local/lib/
