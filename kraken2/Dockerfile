@@ -24,6 +24,7 @@ RUN apk add perl libstdc++ libgcc libgomp rsync
 COPY --from=alpine-build-kraken2 /usr/local/kraken2 /usr/local/kraken2
 RUN mv /usr/local/kraken2/kraken2 /usr/local/bin/
 RUN mv /usr/local/kraken2/kraken2-build /usr/local/bin/
+COPY rsync_from_ncbi.pl /usr/local/kraken2/rsync_from_ncbi.pl
 
 ENTRYPOINT ["/usr/local/bin/kraken2"]
 
