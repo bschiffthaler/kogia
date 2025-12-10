@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.22
 # Build image
 FROM alpine:${ALPINE_VERSION} AS alpine-build-genometools
 
 ARG ALPINE_VERSION=3.13
-ARG GT_VERSION=1.6.2
+ARG GT_VERSION=1.6.6
 ARG BUILD_NCPU=1
 
 WORKDIR /build
@@ -17,7 +17,7 @@ RUN strip bin/gt
 # Final exec image
 FROM alpine:${ALPINE_VERSION}
 
-ARG GT_VERSION=1.6.2
+ARG GT_VERSION=1.6.6
 
 WORKDIR /
 RUN apk add --no-cache bash
@@ -28,3 +28,4 @@ ENTRYPOINT ["/usr/local/bin/gt"]
 
 LABEL maintainer='github.com/nicolasDelhomme'
 LABEL software.version=${GT_VERSION}
+
