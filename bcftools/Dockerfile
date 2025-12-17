@@ -1,8 +1,8 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.22
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-bcftools
 
-ARG BCFTOOLS_VERSION=1.16
+ARG BCFTOOLS_VERSION=1.23
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -20,7 +20,7 @@ RUN for n in /build/inst/libexec/bcftools/*.so; do strip $n; done
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG BCFTOOLS_VERSION=1.16
+ARG BCFTOOLS_VERSION=1.23
 
 RUN apk add --no-cache bash
 RUN apk add --no-cache libbz2 zlib libcurl xz-libs
