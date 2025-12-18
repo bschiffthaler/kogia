@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.22
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-samtools
 
 ARG ALPINE_VERSION=3.13
-ARG SAMTOOLS_VERSION=1.16
+ARG SAMTOOLS_VERSION=1.23
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -20,7 +20,7 @@ RUN strip samtools
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG SAMTOOLS_VERSION=1.16
+ARG SAMTOOLS_VERSION=1.23
 
 RUN apk add --no-cache bash
 RUN apk add --no-cache libbz2 zlib libcurl xz-libs

@@ -1,9 +1,9 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.22
 
 FROM alpine:${ALPINE_VERSION} AS alpine-build-tabix
 
-ARG ALPINE_VERSION=3.13
-ARG HTSLIB_VERSION=1.16
+ARG ALPINE_VERSION=3.22
+ARG HTSLIB_VERSION=1.23
 ARG BUILD_NCPU=1
 
 RUN apk update && apk add build-base wget zlib-dev tar bzip2-dev xz-dev \
@@ -20,7 +20,7 @@ RUN strip tabix bgzip htsfile
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG HTSLIB_VERSION=1.16
+ARG HTSLIB_VERSION=1.23
 
 WORKDIR /
 RUN apk add --no-cache bash
